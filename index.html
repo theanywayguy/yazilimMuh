@@ -53,6 +53,7 @@
             <option value="model4">PDF 4</option>
             <option value="model5">PDF 5</option>
             <option value="model6">PDF 6</option>
+            <option value="model7">LEAKED</option>
           </select>
         </div>
         <div id="score" class="text-lg text-gray-700 mb-4">Score: 0/50</div>
@@ -2505,6 +2506,730 @@
             "pdf 6’da, sayfa 20’de, bakım sırasında karşılaşılan sorunların bilinmesi ve buna karşı hazırlıklı olunmasının yararlı olduğu belirtiliyor.",
         },
       ];
+      const questionsModel7 = [
+        {
+          question: "What is the primary function of a compiler?",
+          options: [
+            "To execute a program's source code line by line",
+            "To translate a program written in a high-level language into machine code",
+            "To manage and store software development documents",
+            "To handle memory allocation for dynamic data structures",
+            "To interpret code written in a scripting language",
+          ],
+          correct: 1,
+          explanation:
+            "A compiler's primary role is to translate high-level source code into machine code that a computer can execute, distinguishing it from interpreters which execute code line by line.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi bir yazılım test seviyesi değildir?",
+          options: [
+            "Birim Testi (Unit Testing)",
+            "Entegrasyon Testi (Integration Testing)",
+            "Sistem Testi (System Testing)",
+            "Kullanıcı Kabul Testi (User Acceptance Testing)",
+            "Prototip Testi (Prototype Testing)",
+          ],
+          correct: 4,
+          explanation:
+            "Prototip Testi, bir yazılım test seviyesi değildir; diğer seçenekler (Birim, Entegrasyon, Sistem ve Kullanıcı Kabul Testleri) yazılım geliştirme sürecinde standart test seviyeleridir.",
+        },
+        {
+          question:
+            "Bakım sorunları hakkında aşağıda verilen ifadelerden hangisi yanlıştır?",
+          options: [
+            "Bakım sırasında karşılaşabilecek sorunları bilmek o sorunlara önlem almayı kolaylaştırır.",
+            "Belgelendirme ve kod içindeki açıklamalar ne kadar iyiyse bakım o kadar kolaylaşır.",
+            "Yazılım sürüm sayısını artırmak bakımı zorlaştırır.",
+            "Yazılım geliştirildiği süreci aynen takip etmek zaman ve iş gücünden tasarruf sağlar.",
+            "Yazılım işlevsel modüllere bölmek sonradan yapılacak değişiklikleri kolaylaştırır.",
+          ],
+          correct: 3,
+          explanation:
+            "Yazılım geliştirildiği süreci aynen takip etmek genellikle bakımda tasarruf sağlamaz, çünkü zamanla değişen gereksinimler ve teknolojiler eski süreci geçersiz kılabilir.",
+        },
+        {
+          question:
+            "Aşağıdaki ifadelerden hangisi, Yazılım Geliştirme Yaşam Döngüsü'nün 'Spiral Model' ile ilgili doğru bir açıklama yapmaktadır?",
+          options: [
+            "Spiral Model, yalnızca yazılımın kodlama ve test aşamalarını içerir ve diğer aşamaları dışlar.",
+            "Spiral Model, her aşamada müşteri geri bildirimlerini dikkate almaz ve tamamen iç geliştirme süreçlerine odaklanır.",
+            "Spiral Model, yazılım geliştirme sürecinde risk analizi ve yönetimini önemli bir odak noktası olarak belirler.",
+            "Spiral Model, yazılım geliştirme sürecini bir dizi kısa, sabit süreli iterasyonlara böler ve her iterasyon sonunda çalışma yazılımı teslim eder.",
+            "Spiral Model, Çağlayan modeli gibi katı aşamaların sırasını takip eder ve geri dönüşlere izin vermez.",
+          ],
+          correct: 2,
+          explanation:
+            "Spiral Model, risk analizi ve yönetimine odaklanır, bu da onu diğer modellerden ayıran temel özelliktir.",
+        },
+        {
+          question: "Hangi modelde Risk Analizi Olgusu ön plana çıkmıştır?",
+          options: [
+            "Helezonoik model",
+            "Çağlayan model",
+            "V model",
+            "Evrimsel geliştirme süreç modeli",
+            "Gelişigüzel model",
+          ],
+          correct: 0,
+          explanation:
+            "Helezonoik model (Spiral Model), risk analizini merkeze alır ve bu özelliğiyle öne çıkar.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi Uç Programlama modelinin 12 Yöntemlerinden birisi değildir?",
+          options: [
+            "Çifte Programlama (Pair Programming)",
+            "Plan Oyunu (The Planning Game)",
+            "Metafor (Metaphor)",
+            "Çifte Test (Pair Testing)",
+            "Yerinde müşteri (On-Site Customer)",
+          ],
+          correct: 3,
+          explanation:
+            "Çifte Test (Pair Testing), Extreme Programming’in 12 yönteminden biri değildir; diğerleri bu metodolojinin temel prensiplerindendir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi doğru bir Sürüm Numaralandırma örneğidir?",
+          options: [
+            "1.0.0-M1 -> 1.0.0-RC1 -> 1.0.0-M2 -> 1.0.0-RC2 -> 1.0.0 -> 1.1.0",
+            "2.0.0-RC1 -> 2.0.0-RC2 -> 2.0.0-M1 -> 2.0.0-M2 -> 2.0.0 -> 2.0.1",
+            "1.0.0-M1 -> 2.0.0-M2 -> 2.1.0-RC1 -> 2.2.0-RC2 -> 2.2.0 -> 2.3.0",
+            "2.0.0-M1 -> 2.0.0-M2 -> 2.0.0-RC1 -> 2.0.0-RC2 -> 2.0.0 -> 2.0.1",
+            "1.0.0-RC1 -> 1.0.0-M1 -> 1.0.0-RC2 -> 1.0.0-M2 -> 1.0.0 -> 1.1.0",
+          ],
+          correct: 3,
+          explanation:
+            "Doğru sürüm numaralandırma, milestone (M) ve release candidate (RC) aşamalarının mantıklı bir sırayla ilerlemesini gerektirir; D seçeneği bu sırayı doğru yansıtır.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi yazılım test stratejileri ile ilgili yanlış bir bilgidir?",
+          options: [
+            "Geçerleme testlerinde doğru ürünün üretilip üretilmediğine bakılır.",
+            "Tümleştirme testinde birimler bir araya getirilerek test edilir.",
+            "Beta testleri geliştiricinin kendi ortamında yapılır.",
+            "Birim test yönteminde yazılım birimlere ayrılarak test edilir.",
+            "Geliştiriciler alfa testlerine dahil olur.",
+          ],
+          correct: 2,
+          explanation:
+            "Beta testleri, genellikle geliştiricinin ortamında değil, gerçek kullanıcıların ortamında yapılır.",
+        },
+        {
+          question:
+            "Aşağıdaki yazılım geliştirme sonuçlarından hangisi (diğerlerine göre daha çok) performans ve güvenlik gibi kavramlar göz önüne alınarak gerçekleştirilir?",
+          options: [
+            "Analiz",
+            "Tasarım",
+            "Unit testler",
+            "Bakım",
+            "Production ortam",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım aşamasında, performans ve güvenlik gibi unsurlar sistem mimarisine entegre edilir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi çevik (agile) manifestonun prensipleri arasında yer almaz?",
+          options: [
+            "Bilginin takımlar içerisinde ya da takımlar arasında en iyi paylaşılması ve anlaşılmasının yolu yüz yüze iletişimdir.",
+            "Basitlik önemlidir.",
+            "En iyi mimari, gereksinimler ve tasarımlar sadece yönetim tarafından organize edilebilen takımlardan çıkar.",
+            "İlerlemenin en iyi göstergesi çalışan yazılımdır.",
+            "Geliştiriciler ve iş insanları proje boyunca beraber çalışmalıdırlar.",
+          ],
+          correct: 2,
+          explanation:
+            "Çevik manifesto, öz-yönetimli takımları teşvik eder; yönetimin tek başına organizasyonu bir çevik prensip değildir.",
+        },
+        {
+          question:
+            "Bir yazılım projesinde, ekip değişikliklere hızlı yanıt verebilmeli ve müşteriyle sürekli etkileşim halinde olabilmelidir. Bu özellikler göz önüne alındığında, aşağıdaki süreç modellerinden hangisini tercih etmek uygun olacaktır?",
+          options: [
+            "V Modeli",
+            "Spiral Model",
+            "Çevik (Agile) Model",
+            "Çift Aşamalı Geliştirme Modeli",
+            "Su Çiçeği Modeli",
+          ],
+          correct: 2,
+          explanation:
+            "Çevik model, esneklik ve müşteriyle sürekli iletişim gerektiren projeler için idealdir.",
+        },
+        {
+          question:
+            "Aşağıdaki yazılım geliştirme sonuçlarından hangisinde (en fazla) performans ve güvenlik gibi kavramlar göz önüne alınarak gerçekleştirilmektedir?",
+          options: [
+            "Analiz",
+            "Tasarım",
+            "Unit testler",
+            "Bakım",
+            "Production ortam",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım aşamasında performans ve güvenlik gibi kritik unsurlar sistemin temel yapısına dahil edilir.",
+        },
+        {
+          question:
+            "Hangi test seviyesi, genellikle geliştirme sürecinin erken aşamalarında, yazılım modüllerinin bireysel olarak doğruluğunu kontrol etmek için kullanılır?",
+          options: [
+            "Sistem Testi",
+            "Entegrasyon Testi",
+            "Birim Testi",
+            "Kabul Testi",
+            "Kullanılabilirlik Testi",
+          ],
+          correct: 2,
+          explanation:
+            "Birim testi, modüllerin bireysel doğruluğunu erken aşamada kontrol eder.",
+        },
+        {
+          question: "Hangisi çağlayan modelinin avantajlarından değildir?",
+          options: [
+            "Erken işin miktarını arttırır.",
+            "Proje yöneticileri için işin dağılımını yapma açısından kolaydır.",
+            "Aşamaları iyi anlaşılabilir.",
+            "Gereksinimleri iyi anlaşılabilen projelerde iyi çalışır.",
+            "Genelde yazılımın kullanıcıya ulaşma zamanı uzundur.",
+          ],
+          correct: 4,
+          explanation:
+            "Yazılımın kullanıcıya geç ulaşması, çağlayan modelinin bir dezavantajıdır, avantajı değildir.",
+        },
+        {
+          question:
+            "XP (Extreme Programming) yönteminde Pair Programming uygulamasının amacı nedir?",
+          options: [
+            "Kod yazma hızını artırmak",
+            "Hataları en aza indirmek",
+            "Müşteri memnuniyetini artırmak",
+            "Sürekli entegrasyonu teşvik etmek",
+            "Gereksinimleri daha iyi anlamak",
+          ],
+          correct: 1,
+          explanation:
+            "Pair Programming, iki geliştiricinin birlikte çalışarak hata oranını azaltmasını amaçlar.",
+        },
+        {
+          question:
+            "Bir çevik projede, ürün sahibi sürekli olarak sprint planı üzerinde değişiklikler yapmaktadır. Bu durum, ekip üzerinde hangi etkiye sahiptir?",
+          options: [
+            "Ekibin motivasyonunu ve üretkenliğini artırır.",
+            "Ekibin moralini ve iş birliğini bozar.",
+            "Ekibin planlama ve tahmin yeteneğini geliştirir.",
+            "Ekibin çevik değerlerine olan bağlılığını güçlendirir.",
+            "Ekibin ürünün kalitesine olan odaklanmasını sağlar.",
+          ],
+          correct: 1,
+          explanation:
+            "Sürekli değişiklikler, ekibin planlama yapmasını zorlaştırarak moral ve iş birliğini olumsuz etkiler.",
+        },
+        {
+          question: "Hangisi yazılım geliştirme süreçlerinden biri değildir?",
+          options: [
+            "Waterfall Model",
+            "Extreme Programming",
+            "V-shaped Model",
+            "Database Model",
+            "Spiral Model",
+          ],
+          correct: 3,
+          explanation:
+            "Database Model, bir yazılım geliştirme süreci değil, veri yönetimi ile ilgilidir.",
+        },
+        {
+          question:
+            "“Bir modüldeki işlemler arasında denetim ilişkisi bulunmaktadır. İşlemlerin birbirleri ile veri ilişkisi yoktur, ancak işlem sırası önemlidir.” Bu modülde hangi yapışıklık türü kullanılmıştır?",
+          options: [
+            "İşlevsel yapışıklık",
+            "Zamansal yapışıklık",
+            "Yordamsal yapışıklık",
+            "Sırasal yapışıklık",
+            "Mantıksal yapışıklık",
+          ],
+          correct: 2,
+          explanation:
+            "Yordamsal yapışıklık, işlemlerin sırasının önemli olduğu ancak veri paylaşımının olmadığı durumlarda kullanılır.",
+        },
+        {
+          question:
+            "Çevik süreçlerin değişimi hoş karşılamasının nedeni nedir?",
+          options: [
+            "Geliştiricilerin iş yükünü azaltmak",
+            "Müşterinin rekabetçi avantajını artırmak",
+            "Projeyi daha hızlı tamamlamak",
+            "Geliştiricilerin daha yaratıcı olmasını sağlamak",
+            "Maliyetleri düşürmek",
+          ],
+          correct: 1,
+          explanation:
+            "Çevik süreçler, değişimi hoş karşılar çünkü bu, müşterinin piyasada avantaj elde etmesini sağlar.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi süreç akışı için kullanılan belirtim yöntemlerinden birisidir?",
+          options: [
+            "Düz Metin",
+            "Karar Tabloları",
+            "Karar Ağaçları",
+            "Nesne-Sınıf Şemaları",
+            "Algoritma",
+          ],
+          correct: 3,
+          explanation:
+            "Nesne-Sınıf Şemaları, süreç akışını değil, sistemin yapısını tanımlamak için kullanılır; diğerleri süreç akışı belirtim yöntemleridir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi yazılım süreci modellerinden olan barok modeli özellikleri arasında sayılmaz?",
+          options: [
+            "Yaşam döngüsü temel adımlarının doğrusal bir şekilde geliştirildiği modeldir.",
+            "Belgelemeyi işin doğal bir ürünü olarak görmektedir.",
+            "Gerçekleştirim aşamasına daha fazla önem verilmiş bir modeldir.",
+            "Aşamalar arası geri dönüşlerin nasıl yapılacağı belli değildir.",
+            "Çağlayan modele göre geri dönüşler kötü tanımlanmıştır.",
+          ],
+          correct: 1,
+          explanation:
+            "Barok model, belgelemeyi doğal bir ürün olarak görmez; bu, daha çok çevik yaklaşımlara özgü bir özelliktir.",
+        },
+        {
+          question: "Hangisi üç programlama özelliği değildir?",
+          options: [
+            "Takımın bilgisayarları kübiklerle bölünmüş büyük bir odanın ortasında yer alır.",
+            "Hiç kimse aynı iş için peşpeşe iki haftadan fazla çalışamaz.",
+            "Küçük ve orta ölçekli projelerde kullanılırlar",
+            "Parçalar geliştirilmeden önce ayrı büyük bir tasarım aşaması yoktur.",
+            "Takım içerisinde özelleşme vardır.",
+          ],
+          correct: 4,
+          explanation:
+            "Takım içerisinde özelleşme, çevik yaklaşımlarda değil, daha geleneksel modellerde görülür.",
+        },
+        {
+          question: "Aşağıdakilerden hangisi donanımın bir özelliği değildir?",
+          options: [
+            "Yeni gereksinimler donanıma ekler yaparak yansıtılır.",
+            "Ömrünü tamamladığında değiştirilebilirdir.",
+            "Hayati önem taşıdığı için kopyasını barındırır.",
+            "Donanım üretilir.",
+            "Donanım bileşenleri dışarıdan temin edilebilir.",
+          ],
+          correct: 0,
+          explanation:
+            "Yeni gereksinimler donanıma eklerle yansıtılmaz; bu, yazılımın bir özelliğidir.",
+        },
+        {
+          question:
+            "Veri tasarımında dikkat edilmesi gereken unsurlardan hangisi yanlıştır?",
+          options: [
+            "Değişik veri yapıları değerlendirilmelidir.",
+            "Veri yapıları üzerinde yapılacak işlemler tanımlanmalıdır.",
+            "Alt düzeyde tasarım kararları tasarım süreci içerisinde geciktirilmelidir.",
+            "Bazı çok kullanılan veri yapıları için bir kütüphane oluşturulmalıdır.",
+            "Kullanılacak programlama dili somut veri tiplerini desteklemeli",
+          ],
+          correct: 4,
+          explanation:
+            "Programlama dilinin somut veri tiplerini desteklemesi bir gereklilik değildir; soyut veri tipleri de kullanılabilir.",
+        },
+        {
+          question:
+            "Yazılım Geliştirme Yaşam Döngüsü (SDLC) hangi adımı içermez?",
+          options: ["Planlama", "Analiz", "Muhasebe", "Gerçekleştirim"],
+          correct: 2,
+          explanation:
+            "Muhasebe, SDLC’nin bir adımı değildir; diğerleri standart aşamalardır.",
+        },
+        {
+          question: "Yazılım Süreci, aşağıdakilerden hangisini ifade eder?",
+          options: [
+            "Yazılımın kurulumu",
+            "Yazılım geliştirme için birbiriyle tutarlı aktivite grubu",
+            "Bilgisayar donanımının güncellenmesi",
+            "İnternet bağlantısının kurulması",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılım süreci, geliştirme için tutarlı aktiviteleri kapsar.",
+        },
+        {
+          question: "Hangi modelin başarısı ilk evrimin başarısına bağımlıdır?",
+          options: [
+            "Helezonoik model",
+            "V model",
+            "Çağlayan model",
+            "Barok model",
+            "Evrimsel geliştirme modeli",
+          ],
+          correct: 4,
+          explanation:
+            "Evrimsel geliştirme modeli, ilk evrimin başarısına bağlı olarak ilerler.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi yordamsal tasarım ile mimari tasarım arasındaki farklardan biridir?",
+          options: [
+            "Yordamsal tasarım, diğer modüllere hizmet sağlayan sistem bileşenlerini tanımlar; mimari tasarım ise yazılım modüllerinin iç yapısını tanımlar.",
+            "Mimari tasarım, algoritmik ayrıntıları belirler; yordamsal tasarım ise sistem bileşenlerinin genel yapısını tanımlar.",
+            "Mimari tasarım, bağımsız bir sistem olarak çalışabilir; yordamsal tasarım ise diğer modüllerin sağladığı hizmetleri kullanır.",
+            "Yordamsal tasarım, yazılım modüllerinin iç yapısındaki algoritmik ayrıntıları tanımlar; mimari tasarım ise sistem bileşenlerini ve onların ilişkilerini tanımlar.",
+            "Yordamsal tasarım, nesne, program, paket gibi bileşenler içerir; mimari tasarım ise prosedür ve fonksiyonları içerir.",
+          ],
+          correct: 3,
+          explanation:
+            "Yordamsal tasarım, algoritmik detayları içerir; mimari tasarım ise sistemin genel yapısını ve ilişkilerini tanımlar.",
+        },
+        {
+          question:
+            "Kara kutu testi hakkında aşağıdakilerden hangisi yanlıştır?",
+          options: [
+            "Kara kutu testi yazılımın arayüzü düzeyinde yapılır.",
+            "Amaç yazılımın işlevlerini yerine getirdiğini göstermektir.",
+            "Kullanıcı, bu testler sırasında yazılımın içyapısıyla ilgilenir.",
+            "Girdi ya da çıktılar çeşitli ortamlarda sağlanan veri ya da bilgi olabileceği gibi bir donanımdan veri alınması veya bir donanıma kumanda edilmesi de olabilir.",
+            "Testlerin düzeyi, kullanım alanına göre değişiklik gösterebilir.",
+          ],
+          correct: 2,
+          explanation:
+            "Kara kutu testinde kullanıcı, yazılımın iç yapısıyla ilgilenmez; yalnızca giriş ve çıkışlara odaklanır.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisinde yazılım test türleri ve test stratejileri hakkında verilen bilgilerden hangisi doğrudur?",
+          options: [
+            "Saydam kutu testi, kullanıcı arayüzüne odaklanır ve iç işleyişi dikkate almaz.",
+            "Birim testinde (Unit Test), çok programlı sistemlerde birimlerin ayrı ayrı test edilmesine gerek yoktur.",
+            "Kara Kutu testinde, sistem gereksinimlerine dayanarak esas kullanıcıya yönelik test durumları oluşturur.",
+            "Alfa testinde, geliştirici genellikle bu testlere katılmaz yalnızca belirli aralıklara sonuçları ve yorumları alır.",
+            "Sistem testi, yazılımın diğer donanım ve yazılımlarla nasıl etkileştiğini test eder ve bu testlerden sonra hata bulma ve sistemi deneme amacıyla hazırlık testleri yapılır.",
+          ],
+          correct: 2,
+          explanation:
+            "Kara kutu testi, sistem gereksinimlerine dayanarak kullanıcı odaklı testler oluşturur.",
+        },
+        {
+          question: "Çevik Manifesto'ya göre en önemli öncelik nedir?",
+          options: [
+            "Projeyi hızlıca tamamlamak",
+            "Geliştiricilerin memnuniyeti",
+            "Müşteriyi değerli yazılımı erken zamanda ve sürekli sunarak memnun etmek",
+            "Gereksinimlerin değişmemesi",
+            "Geliştirme sürecinde maliyeti düşürmek",
+          ],
+          correct: 2,
+          explanation:
+            "Çevik Manifesto’nun temel önceliği, müşteriye erken ve sürekli değer sunmaktır.",
+        },
+        {
+          question: "Spiral modelinin temel amacı nedir?",
+          options: [
+            "Tekrarlayan geliştirme ile riskleri azaltmak.",
+            "Projeyi hızlı bir şekilde tamamlamak.",
+            "Müşteri geri bildirimlerine dayalı geliştirme.",
+            "Ayrıntılı dokümantasyon oluşturmak.",
+            "Proje maliyetlerini minimize etmek.",
+          ],
+          correct: 0,
+          explanation:
+            "Spiral model, riskleri azaltmak için tekrarlayan bir yaklaşım benimser.",
+        },
+        {
+          question:
+            "Extreme Programming yönteminde çiftler halinde çalışan yazılımcılar hangi faaliyeti birlikte gerçekleştirir?",
+          options: [
+            "Kodlama ve test etme",
+            "Gereksinim analizi",
+            "Proje planlaması",
+            "Müşteri değerlendirmesi",
+            "Yazılım dağıtımı",
+          ],
+          correct: 0,
+          explanation:
+            "Çift programlama, kodlama ve test etmeyi birlikte yapmayı içerir.",
+        },
+        {
+          question:
+            "Agile süreçlerinde, müşteri memnuniyetini sağlamak için hangi ilke benimsenir?",
+          options: [
+            "Projenin başında tüm gereksinimlerin sabitlenmesi",
+            "Değişen gereksinimlerin kabul edilmesi",
+            "Uzun süreli planlamalar yapılması",
+            "Müşteri geri bildirimlerinin göz ardı edilmesi",
+            "Yalnızca iç süreçlere odaklanılması",
+          ],
+          correct: 1,
+          explanation:
+            "Çevik süreçler, değişen gereksinimleri kabul ederek müşteri memnuniyetini hedefler.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi Extreme Programming (XP) pratiği değildir?",
+          options: [
+            "Pair Programming",
+            "Continuous Integration",
+            "Waterfall Planning",
+            "Refactoring",
+            "Testing",
+          ],
+          correct: 2,
+          explanation:
+            "Waterfall Planning, XP’nin bir pratiği değildir; XP iteratif bir yaklaşımdır.",
+        },
+        {
+          question:
+            "Aşağıdaki bakım türlerinden hangisi, yazılımın performansını artırmak, bellek sızıntılarını gidermek ve kod tabanını temizlemek için yapılan bakım türü olarak sınıflandırılabilir?",
+          options: [
+            "Uyarlayıcı Bakım",
+            "Düzeltici Bakım",
+            "İyileştirici Bakım",
+            "Önleyici Bakım",
+            "Kapsamlı Bakım",
+          ],
+          correct: 3,
+          explanation:
+            "Önleyici bakım, performans artışı ve kod temizliği gibi proaktif iyileştirmeleri kapsar.",
+        },
+        {
+          question:
+            "Bir yazılım projesinde sistem testi aşaması sırasında, aşağıdaki faaliyetlerden hangisi gerçekleştirilmez?",
+          options: [
+            "Yazılımın tüm fonksiyonlarının doğru çalıştığı doğrulanır.",
+            "Yazılımın performansı ölçülür ve gereksinimlere uygun olup olmadığı belirlenir.",
+            "Yazılımın kullanıcı arayüzü, kullanılabilirlik ve erişilebilirlik açısından değerlendirilir.",
+            "Yazılım kodunun derlenmesi ve hata ayıklama işlemi yapılır.",
+            "Tüm sistem testi senaryolarının başarılı bir şekilde tamamlanmasının ardından, yazılımın kullanıcılar tarafından kabul edilip edilmeyeceği belirlenir",
+          ],
+          correct: 3,
+          explanation:
+            "Kod derleme ve hata ayıklama, sistem testi değil, geliştirme aşamasında yapılır.",
+        },
+        {
+          question:
+            "Yazılım teslim edildikten sonra, kullanıcı, kullanım sırasında karşılaştığı yanlış hesaplama, hatalı davranış, eksik veri gösterimi gibi yazılım kusurlarını bildirerek düzeltilmesini isteyebilir. Bu yazılım bakım türü aşağıdaki hangi bakım türü için en doğru olur?",
+          options: [
+            "Düzeltici (Corrective) bakım",
+            "Uyarlayıcı (Adaptive) bakım",
+            "İyileştirici (Perfective) bakım",
+            "Önleyici (Preventive) bakım",
+            "Geliştirici (Developer) bakım",
+          ],
+          correct: 0,
+          explanation:
+            "Düzeltici bakım, mevcut hataları düzeltmek için yapılır.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi yazılım süreç modeli olan helezonik modelin avantajlarından biri değildir?",
+          options: [
+            "Pek çok yazılım modelini içinde bulundurur.",
+            "Geliştirmeyi küçük parçalara böler. En riskli kısımlar önce gerçekleştirilir.",
+            "Her döngü bir fazı ifade eder. Doğrudan tanımlama, tasarım,... vs gibi bir faz yoktur.",
+            "Küçük ve düşük riskli projeler için ucuz bir yöntemdir.",
+            "Geliştirmeyi küçük parçalara böler. En riskli kısımlar önce gerçekleştirilir.",
+          ],
+          correct: 3,
+          explanation:
+            "Helezonik model, karmaşık ve riskli projeler için uygundur; küçük ve düşük riskli projelerde genellikle maliyet etkin değildir.",
+        },
+        {
+          question:
+            "Hangi özellik, Çağlayan Modeli ile Agile Modeller arasındaki farkı en iyi açıklar?",
+          options: [
+            "Çağlayan Modeli, yazılım geliştirme sürecini tek bir büyük döngüde yönetirken, Agile Modeller birden fazla küçük döngüde çalışır.",
+            "Çağlayan Modeli, bireysel geliştiricilerin inisiyatifini teşvik ederken, Agile Modeller daha fazla mikro yönetim sağlar.",
+            "Çağlayan Modeli, değişen müşteri gereksinimlerine hızla uyum sağlayabilirken, Agile Modeller daha fazla belgelendirme ve iş süreci standardizasyonu sağlar.",
+            "Çağlayan Modeli, yazılım geliştirme sürecini sıkı bir plan ve sıralı adımlarla yönetirken, Agile Modeller daha esnek ve iteratif bir yaklaşım benimser.",
+          ],
+          correct: 3,
+          explanation:
+            "Çağlayan modeli sıralı ve katıdır; Agile ise esnek ve iteratiftir.",
+        },
+        {
+          question:
+            "Bir hastane için hastaların hayati belirtilerini izleyen bir tıbbi cihaz yazılımı geliştirilmek isteniyor. Bu yazılım için aşağıdaki yazılım süreç modellerinden hangisi uygundur?",
+          options: [
+            "Gelişigüzel model",
+            "Barok Modeli",
+            "Çağlayan (Şelale) Modeli",
+            "V Süreç Modeli",
+            "Artırımlı Geliştirme Süreç Modeli",
+          ],
+          correct: 3,
+          explanation:
+            "V Süreç Modeli, kritik sistemlerde doğrulama ve validasyona odaklandığı için uygundur.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi çevik (agile) proje geliştirme metodolojisinin dezavantajlarından biri değildir?",
+          options: [
+            "Ürün gereksinimleri sürekli değişebileceğinden maliyetler önceden tahmin edilemez.",
+            "Ekip katılımına öncelik verilerek kurulan iletişim sayesinde sorunların daha hızlı çözülmesini sağlar.",
+            "Gerekli olan her aşamada müşteriden geri bildirim almak zor olabilir.",
+            "Müşteriler geri bildirim vermek istediklerinde akıllarına gelebilecek yeni istekler ek işleri ortaya çıkarır.",
+            "Müşteri ile iletişimi zor olan büyük kurumsal yapılarda uygulamak zordur.",
+          ],
+          correct: 1,
+          explanation:
+            "Ekip katılımı ve iletişim, çevik metodolojinin bir avantajıdır, dezavantajı değildir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi extreme programmingde pair working etkinliğini arttırır?",
+          options: [
+            "Ekip üyelerinin sürekli farklı partnerlerle çalışmasını sağlamak.",
+            "Bir partnerin diğerine göre daha çok çalışması.",
+            "Partnerlerin birbirleriyle çok sık çatışması.",
+            "Bir partnerin diğerine göre daha çok karar alması.",
+            "Birbirleriyle anlaşamayan ekip üyelerini eşleştirmek.",
+          ],
+          correct: 0,
+          explanation:
+            "Farklı partnerlerle çalışma, bilgi paylaşımını ve etkinliği artırır.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi Helezonik Model'in Avantajlarından biri değildir?",
+          options: [
+            "Risk analizi olgusu ön plandadır.",
+            "Prototip yaklaşımı vardır.",
+            "Ara adımların fazlalığı nedeniyle dokümantasyon gerektirir.",
+            "Kullanıcılar sistemi erken görebilir.",
+            "Hataları erken gidermeye odaklanır.",
+          ],
+          correct: 2,
+          explanation:
+            "Dokümantasyon gerekliliği, Helezonik Model’in bir dezavantajıdır, avantajı değildir.",
+        },
+        {
+          question: "Aşağıdakilerden hangisi bakım türlerinden değildir?",
+          options: [
+            "Düzeltici (Corrective)",
+            "Uyarlayıcı (Adaptive)",
+            "Geliştirici (Enhancive)",
+            "İyileştirici (Perfective)",
+            "Önleyici (Preventive)",
+          ],
+          correct: 2,
+          explanation:
+            "Geliştirici (Enhancive), standart bir bakım türü değildir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi Helezonik Model'in Avantajlarından biri değildir?",
+          options: [
+            "Risk analizi olgusu ön plandadır.",
+            "Prototip yaklaşımı vardır.",
+            "Ara adımların fazlalığı nedeniyle dokümantasyon gerektirir.",
+            "Kullanıcılar sistemi erken görebilir.",
+            "Hataları erken gidermeye odaklanır.",
+          ],
+          correct: 2,
+          explanation:
+            "Dokümantasyon gerekliliği, Helezonik Model’in bir dezavantajıdır, avantajı değildir.",
+        },
+        {
+          question: "Aşağıdakilerden hangisi bir yazılım bakım türü değildir?",
+          options: [
+            "Düzeltici",
+            "Uyarlayıcı",
+            "Denetleyici",
+            "Önleyici",
+            "İyileştirici",
+          ],
+          correct: 2,
+          explanation:
+            "Denetleyici, bir bakım türü değildir; diğerleri standart bakım türleridir.",
+        },
+        {
+          question:
+            "Aşağıdaki projelerden hangisinin Çağlayan (Waterfall) modeli ile yapılması daha olasıdır?",
+          options: [
+            "Mobil uygulama tasarımı",
+            "Yapay zeka algoritma yazılımı tasarımı",
+            "Bir e-ticaret web sitesi tasarımı",
+            "Bir startup ın yeni bir ürün fikrini test etmek için geliştirdiği prototip tasarımı",
+            "MR cihazı için yazılım tasarımı",
+          ],
+          correct: 4,
+          explanation:
+            "MR cihazı gibi kritik ve iyi tanımlı gereksinimlere sahip projeler, Çağlayan modeli için uygundur.",
+        },
+        {
+          question:
+            "Bir yazılımın 'major' numarasının artırılmasının genellikle hangi durumu temsil ettiği aşağıdakilerden hangisidir?",
+          options: [
+            "Yeni bir özellik eklenmesi",
+            "Bir hata giderilmesi",
+            "Köklü değişiklikler ve yeni bir ortama uyarlamalar",
+            "Yazılımın general availability (GA) aşamasına geçmesi",
+            "Oluşturulan bir prototipin test edilmesi",
+          ],
+          correct: 2,
+          explanation:
+            "Major numara, köklü değişiklikleri ve büyük güncellemeleri temsil eder.",
+        },
+        {
+          question:
+            "Aşağıdaki ifadelerden hangisi Extreme Programming (XP) metodolojisinin temel ilkeleri ve uygulamaları ile doğru bir şekilde eşleştirilmiştir?",
+          options: [
+            "Incremental Development - Tüm sistemin tek seferde geliştirilmesi ve ardından test edilmesi",
+            "Test-Driven Development (TDD) - Kod yazımı tamamlandıktan sonra testlerin yazılması ve yürütülmesi",
+            "Continuous Integration - Kodun belirli aralıklarla entegre edilip büyük sürümlerin yayımlanması",
+            "Refactoring - Kodun işlevselliğini değiştirmeden yapısal olarak iyileştirilmesi",
+            "Pair Programming - Geliştiricilerin bireysel olarak çalışıp daha sonra kodlarını birleştirmesi",
+          ],
+          correct: 3,
+          explanation:
+            "Refactoring, XP’de kodun yapısını iyileştirmeyi ifade eder ve doğru eşleşmedir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi yazılımın temel krizleri arasında gösterilemez?",
+          options: [
+            "Tasarlanan zamanın gerisinde kalma",
+            "Bütçeyi aşma",
+            "Güvenilir olmayan yazılım",
+            "Bu sektörle ilgilenen kişi sayısının çok olması",
+            "Sürekliliğin sağlanmasındaki zorluk",
+          ],
+          correct: 3,
+          explanation:
+            "Sektördeki kişi sayısı, yazılım krizlerinden biri değildir; diğerleri yaygın krizlerdir.",
+        },
+        {
+          question:
+            "Aşağıda verilen Kara kutu testi ile ilgili maddelerden hangisi yanlıştır?",
+          options: [
+            "Yazılımın ara yüzü düzeyinde yapılır.",
+            "Kullanıcı, bu testler sırasında yazılımın iç yapısıyla ilgilenir.",
+            "Amaç yazılımın işlevlerini yerine getirdiğini göstermektir.",
+            "Testler hata bulmak için yapılır.",
+            "Testlerin düzey, kullanım alanına göre değişiklik gösterebilir.",
+          ],
+          correct: 1,
+          explanation:
+            "Kara kutu testinde kullanıcı, iç yapıyla ilgilenmez; sadece giriş-çıkışlar test edilir.",
+        },
+        {
+          question:
+            "Aşağıdakilerden hangisi metodolojilerde helezonik modeli ön plana çıkaran özelliklerden sayılmaz?",
+          options: [
+            "Prototip yaklaşımı",
+            "Risk analizi",
+            "Evrimsel yaklaşım",
+            "Her döngünün bir faza karşılık geldiği yaklaşım",
+            "Yinelemeli artırımsal yaklaşım",
+          ],
+          correct: 2,
+          explanation:
+            "Evrimsel yaklaşım, helezonik modelin değil, evrimsel geliştirme modelinin özelliğidir.",
+        },
+      ];
       let currentModel = questionsModel1;
       let currentQuestion = 0;
       let score = 0;
@@ -2652,6 +3377,7 @@
         else if (modelSelect.value === "model4") currentModel = questionsModel4;
         else if (modelSelect.value === "model5") currentModel = questionsModel5;
         else if (modelSelect.value === "model6") currentModel = questionsModel6;
+        else if (modelSelect.value === "model7") currentModel = questionsModel7;
 
         displayQuestion();
         updateScore();
