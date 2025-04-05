@@ -47,7 +47,12 @@
             >Select Quiz Model:</label
           >
           <select id="modelSelect" class="p-2 border rounded-lg">
-            <option value="model1">Model 1</option>
+            <option value="model1">PDF 1</option>
+            <option value="model2">PDF 2</option>
+            <option value="model3">PDF 3</option>
+            <option value="model4">PDF 4</option>
+            <option value="model5">PDF 5</option>
+            <option value="model6">PDF 6</option>
           </select>
         </div>
         <div id="score" class="text-lg text-gray-700 mb-4">Score: 0/50</div>
@@ -1450,6 +1455,11 @@
         isRetrying = false;
 
         if (modelSelect.value === "model1") currentModel = questionsModel1;
+        else if (modelSelect.value === "model2") currentModel = questionsModel2;
+        else if (modelSelect.value === "model3") currentModel = questionsModel3;
+        else if (modelSelect.value === "model4") currentModel = questionsModel4;
+        else if (modelSelect.value === "model5") currentModel = questionsModel5;
+        else if (modelSelect.value === "model6") currentModel = questionsModel6;
 
         displayQuestion();
         updateScore();
