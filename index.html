@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microprocessor Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .correct {
+        color: #10b981;
+      }
+      .incorrect {
+        color: #ef4444;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        z-index: 50;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 40;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="max-w-4xl mx-auto p-6">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
+        Microprocessor Quiz
+      </h1>
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="flex justify-center mb-4">
+          <label for="modelSelect" class="mr-2 text-lg text-gray-700"
+            >Select Quiz Model:</label
+          >
+          <select id="modelSelect" class="p-2 border rounded-lg">
+            <option value="model1">Model 1</option>
+          </select>
+        </div>
+        <div id="score" class="text-lg text-gray-700 mb-4">Score: 0/50</div>
+        <div id="questionArea" class="mb-6"></div>
+        <div id="explanation" class="p-4 border rounded-lg hidden"></div>
+        <div class="flex justify-center space-x-4 mt-4">
+          <button
+            id="submitBtn"
+            class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Submit Answer
+          </button>
+          <button
+            id="resetBtn"
+            class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
+          >
+            Reset Quiz
+          </button>
+          <button
+            id="randomBtn"
+            class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
+          >
+            Randomize Questions
+          </button>
+        </div>
+        <table class="w-full mt-6 border-collapse">
+          <thead>
+            <tr class="bg-green-600 text-white">
+              <th class="border p-2">Question #</th>
+              <th class="border p-2">Status</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="text-gray-700"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Quiz Completed!</h2>
+      <p id="popupScore" class="text-lg mb-4"></p>
+      <button
+        id="retryWrongBtn"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+      >
+        Retry Wrong Questions
+      </button>
+      <button
+        id="closePopupBtn"
+        class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition ml-2"
+      >
+        Close
+      </button>
+    </div>
+
+    <script>
+      const questionsModel1 = [
+        {
+          question: "Yazılım nedir?",
+          options: [
+            "A) Donanım bileşenlerinin fiziksel birleşimi",
+            "B) Tanımlanmış bir işlevi yerine getiren bir ürün",
+            "C) Yalnızca algoritmalardan oluşan bir yapı",
+            "D) Bilgisayar donanımını üreten bir sistem",
+            "E) Kullanıcı arayüzü tasarımı",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılım, tanımlanmış bir işlevi yerine getiren, girdi ve çıktıları olan bir ürün olarak tanımlanmıştır.",
+        },
+        {
+          question: "Yazılımın temel amacı nedir?",
+          options: [
+            "A) Donanımı kontrol etmek",
+            "B) Veriyi bilgiye dönüştürmek",
+            "C) Algoritma tasarlamak",
+            "D) Kullanıcı arayüzü oluşturmak",
+            "E) Sistem güvenliğini sağlamak",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımın temel amacının 'veri'yi 'bilgi'ye dönüştürmek olduğu belirtilmiştir.",
+        },
+        {
+          question: "Yazılım geliştirme sürecinde hangi aşama yer almaz?",
+          options: [
+            "A) Gereksinim Aşaması",
+            "B) Tasarım Aşaması",
+            "C) Donanım Üretim Aşaması",
+            "D) Gerçekleştirim Aşaması",
+            "E) Bakım Aşaması",
+          ],
+          correct: 2,
+          explanation:
+            "Yazılım geliştirme süreci, gereksinim, tasarım, gerçekleştirim ve bakım gibi aşamaları içerir; donanım üretimi bu sürece dahil değildir.",
+        },
+        {
+          question:
+            "Yazılım uygulamalarından hangisi gömülü sistemlerle ilişkilidir?",
+          options: [
+            "A) Web-based software",
+            "B) Embedded software",
+            "C) Business software",
+            "D) Personal computer software",
+            "E) Artificial intelligence software",
+          ],
+          correct: 1,
+          explanation:
+            "Gömülü sistemlerle ilişkilendirilen yazılım türü 'Embedded software'dir.",
+        },
+        {
+          question: "Yazılım problemlerinden biri nedir?",
+          options: [
+            "A) Donanım uyumluluğu",
+            "B) Düşük kalite",
+            "C) Hızlı geliştirme",
+            "D) Düşük maliyet",
+            "E) Yüksek kullanıcı memnuniyeti",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılım problemleri arasında 'Düşük Kalite' açıkça listelenmiştir.",
+        },
+        {
+          question: "Yazılımda mantık (algoritma) neden önemlidir?",
+          options: [
+            "A) Donanımı kontrol eder",
+            "B) İşin mantığını yazılıma yansıtır",
+            "C) Veriyi depolar",
+            "D) Kullanıcı arayüzünü tasarlar",
+            "E) Belgeleri düzenler",
+          ],
+          correct: 1,
+          explanation:
+            "Mantık (algoritma), bilgisayarlaştırılmak istenen işin mantığını yazılıma yansıtmak için en önemli bileşenlerden biridir.",
+        },
+        {
+          question: "Yazılım üretiminde belgelerin rolü nedir?",
+          options: [
+            "A) Kod yazımını hızlandırır",
+            "B) Ara üretimlere ait bilgileri düzenler",
+            "C) Donanımı test eder",
+            "D) Kullanıcı arayüzünü geliştirir",
+            "E) Veriyi analiz eder",
+          ],
+          correct: 1,
+          explanation:
+            "Belgeler, yazılım üretiminde planlama, analiz ve tasarım gibi aşamalardaki bilgileri düzenlemek için gereklidir.",
+        },
+        {
+          question: "Günümüzde yazılım geliştirme nasıl gerçekleştirilir?",
+          options: [
+            "A) Tek kişi tarafından",
+            "B) Bir takım tarafından",
+            "C) Yalnızca otomasyonla",
+            "D) Donanım mühendisleriyle",
+            "E) Kullanıcılar tarafından",
+          ],
+          correct: 1,
+          explanation:
+            "Günümüzde yazılım geliştirme bir takım çalışmasıyla gerçekleştirilmektedir.",
+        },
+        {
+          question: "Programın bakım çalışmalarının bir nedeni nedir?",
+          options: [
+            "A) Her olasılığın test edilememesi",
+            "B) Donanımın eskimesi",
+            "C) Kullanıcı arayüzünün değişmesi",
+            "D) Verinin silinmesi",
+            "E) Algoritmanın bozulması",
+          ],
+          correct: 0,
+          explanation:
+            "Hiçbir program tüm olasılıklar göz önüne alınarak test edilemez, bu nedenle bakım çalışmaları gereklidir.",
+        },
+        {
+          question: "Yazılım ve donanım arasındaki temel fark nedir?",
+          options: [
+            "A) Yazılım üretilir, donanım geliştirilir",
+            "B) Yazılım geliştirilir, donanım üretilir",
+            "C) Yazılım fizikseldir, donanım soyuttur",
+            "D) Yazılım eskimez, donanım eskimez",
+            "E) Yazılım kopyalanamaz, donanım kopyalanır",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılım geliştirilirken, donanım fabrika ortamında seri üretimle üretilir.",
+        },
+        {
+          question: "Yazılımın eskimesi ne anlama gelir?",
+          options: [
+            "A) Donanımın bozulması",
+            "B) Yeni ihtiyaçları karşılayamaması",
+            "C) Kodun silinmesi",
+            "D) Verinin kaybolması",
+            "E) Algoritmanın değişmesi",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımın eskimesi, yeni ihtiyaçları karşılayamaması veya kullandığı teknolojinin eskimesi olarak tanımlanır.",
+        },
+        {
+          question:
+            "Yazılımın donanım kadar önemli olmasının bir örneği nedir?",
+          options: [
+            "A) Web sitelerinin hızlı yüklenmesi",
+            "B) Diyaliz makinelerinin yazılım uyumsuzluğu",
+            "C) Donanımın seri üretimi",
+            "D) Algoritmaların optimize edilmesi",
+            "E) Verilerin depolanması",
+          ],
+          correct: 1,
+          explanation:
+            "Diyaliz makinelerinin 2000 yılı uyumsuzluğu nedeniyle çalışamaması, yazılımın önemini gösteren bir örnektir.",
+        },
+        {
+          question:
+            "Yazılım kopyalama ile donanım kopyalama arasındaki fark nedir?",
+          options: [
+            "A) Yazılım kopyalamak hataları çözer",
+            "B) Donanım kopyalamak maliyeti artırır",
+            "C) Yazılım kopyalamak hatalara çözüm değildir",
+            "D) Donanım kopyalamak gereksizdir",
+            "E) Yazılım kopyalamak donanımı etkiler",
+          ],
+          correct: 2,
+          explanation:
+            "Yazılımı kopyalamak hatalara çözüm olmaz, ancak donanımda kopya hata toleransı için kullanılabilir.",
+        },
+        {
+          question: "Yazılımda kalite özelliklerinden biri hangisidir?",
+          options: [
+            "A) Hız",
+            "B) Güvenirlik",
+            "C) Renk",
+            "D) Boyut",
+            "E) Ağırlık",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımda kalite özellikleri arasında 'Güvenirlik' yer alır.",
+        },
+        {
+          question:
+            "UML’de hangi diyagram türü yapısal diyagramlar arasında yer alır?",
+          options: [
+            "A) State Machine Diagram",
+            "B) Class Diagram",
+            "C) Use Case Diagram",
+            "D) Activity Diagram",
+            "E) Timing Diagram",
+          ],
+          correct: 1,
+          explanation:
+            "Class Diagram, UML’de yapısal diyagramlar arasında yer alır.",
+        },
+        {
+          question:
+            "Yazılım geliştirme sürecinde bakım aşamasında hangi tür bakım yer alır?",
+          options: [
+            "A) Corrective",
+            "B) Hardware",
+            "C) Network",
+            "D) Security",
+            "E) Design",
+          ],
+          correct: 0,
+          explanation:
+            "Bakım aşamasında 'Corrective' (düzeltici) bakım türü yer alır.",
+        },
+        {
+          question: "Yazılım geçmişinde genel bir sorun nedir?",
+          options: [
+            "A) Geliştirme maliyetlerinin düşük olması",
+            "B) Teslimattan önce tüm hataların bulunamaması",
+            "C) Hızlı teslimat",
+            "D) Kullanıcı taleplerinin fazlasıyla karşılanması",
+            "E) Gelişimin kolayca ölçülmesi",
+          ],
+          correct: 1,
+          explanation:
+            "Geçmişte yazılımda sıkça sorulan bir soru, teslimattan önce tüm hataların neden bulunamadığıdır.",
+        },
+        {
+          question: "Sistem nedir?",
+          options: [
+            "A) Yalnızca donanımdan oluşan bir yapı",
+            "B) Birbiryle alakalı programlardan oluşan bir koleksiyon",
+            "C) Tek bir program",
+            "D) Kullanıcı arayüzü",
+            "E) Veri tabanı",
+          ],
+          correct: 1,
+          explanation:
+            "Sistem, birbiryle alakalı programlardan oluşan bir koleksiyon olarak tanımlanmıştır.",
+        },
+        {
+          question: "Yazılımın bileşenlerinden biri hangisidir?",
+          options: [
+            "A) Donanım",
+            "B) Mantık (algoritma)",
+            "C) Fiziksel bileşenler",
+            "D) Elektrik devreleri",
+            "E) Ağ ekipmanları",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımın bileşenleri arasında 'Mantık (algoritma)' yer alır.",
+        },
+        {
+          question: "Yazılım üretiminde hangi disiplin gereklidir?",
+          options: [
+            "A) Elektrik mühendisliği",
+            "B) Mühendislik disiplini",
+            "C) Kimya mühendisliği",
+            "D) Mekanik mühendisliği",
+            "E) Matematik disiplini",
+          ],
+          correct: 1,
+          explanation: "Yazılım üretimi bir mühendislik disiplini gerektirir.",
+        },
+        {
+          question: "Yazılım geliştirme maliyetleri neden yüksektir?",
+          options: [
+            "A) Hızlı teslimat nedeniyle",
+            "B) Donanım maliyetleri nedeniyle",
+            "C) Geçmişte sıkça sorulan bir sorun olarak",
+            "D) Kullanıcı taleplerinin az olması nedeniyle",
+            "E) Düşük kalite nedeniyle",
+          ],
+          correct: 2,
+          explanation:
+            "Geliştirme maliyetlerinin neden yüksek olduğu, yazılım geçmişinde genel bir sorun olarak belirtilmiştir.",
+        },
+        {
+          question: "Yazılımın veri bileşeni ne yapar?",
+          options: [
+            "A) Donanımı kontrol eder",
+            "B) Veriyi bilgiye dönüştürür",
+            "C) Algoritmayı tasarlar",
+            "D) Kullanıcı arayüzünü oluşturur",
+            "E) Belgeleri düzenler",
+          ],
+          correct: 1,
+          explanation:
+            "Veri bileşeni, yazılımın temel amacı olan veriyi bilgiye dönüştürme sürecinde rol oynar.",
+        },
+        {
+          question: "Yazılımın insan bileşeni kimleri içerir?",
+          options: [
+            "A) Yalnızca geliştiriciler",
+            "B) Kullanıcılar ve geliştiriciler",
+            "C) Yalnızca kullanıcılar",
+            "D) Donanım mühendisleri",
+            "E) Sistem yöneticileri",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımın insan bileşeni, hem kullanıcıları hem de geliştiricileri içerir.",
+        },
+        {
+          question: "Yazılımın ana çıktısı nedir?",
+          options: [
+            "A) Donanım",
+            "B) Program (kod)",
+            "C) Veri tabanı",
+            "D) Kullanıcı arayüzü",
+            "E) Belgeler",
+          ],
+          correct: 1,
+          explanation:
+            "Yazılımın ana çıktısı sonuçta bir bilgisayar programıdır.",
+        },
+        {
+          question: "Yazılımda yeniden kullanılabilirlik oranı nedir?",
+          options: [
+            "A) %50-60",
+            "B) %1-2",
+            "C) %80-90",
+            "D) %30-40",
+            "E) %10-20",
+          ],
+          correct: 1,
+          explanation:
+            "Günümüzde yeniden kullanılabilir yazılım oranı %1-2 olarak belirtilmiştir.",
+        },
+        {
+          question: "Gereksinim yakalama ve analizi süreci neyi kapsar?",
+          options: [
+            "A) Donanım tasarımını",
+            "B) Sistem hizmetlerinin ve kısıtlamalarının oluşturulmasını",
+            "C) Yazılım kodlamasını",
+            "D) Kullanıcı arayüzü tasarımını",
+            "E) Veri tabanı yönetimini",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim yakalama ve analizi, sistemin sağlaması gereken hizmetlerin ve çalışması gereken kısıtlamaların oluşturulmasını içerir.",
+        },
+        {
+          question: "Gereksinimlerin türetilmesi adımlarından biri hangisidir?",
+          options: [
+            "A) Kod yazımı",
+            "B) Fizibilite çalışması",
+            "C) Donanım testi",
+            "D) Kullanıcı eğitimi",
+            "E) Sistem bakımı",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinimlerin türetilmesi adımları arasında 'Fizibilite Çalışması' yer alır.",
+        },
+        {
+          question: "Gereksinim analizinde hangi faaliyet gerçekleştirilir?",
+          options: [
+            "A) Donanım seçimi",
+            "B) Gereksinimlerin önceliklendirilmesi",
+            "C) Kod optimizasyonu",
+            "D) Veri tabanı tasarımı",
+            "E) Kullanıcı arayüzü testi",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim analizi, ihtiyaçların belirlenmesi ve önceliklendirilmesi gibi faaliyetleri içerir.",
+        },
+        {
+          question: "Information Domain hangi görüşleri içerir?",
+          options: [
+            "A) Bilgi İçeriği, Bilgi Akışı, Bilgi Yapısı",
+            "B) Kod Yapısı, Veri Tabanı, Kullanıcı Arayüzü",
+            "C) Donanım Gereksinimleri, Yazılım Testleri, Sistem Bakımı",
+            "D) Algoritma Tasarımı, Veri Depolama, Güvenlik",
+            "E) Proje Yönetimi, Risk Analizi, Kalite Kontrol",
+          ],
+          correct: 0,
+          explanation:
+            "Information Domain, Bilgi İçeriği, Bilgi Akışı ve Bilgi Yapısı olmak üzere üç görüş içerir.",
+        },
+        {
+          question: "Gereksinimleri ortaya çıkarma yöntemlerinden biri nedir?",
+          options: [
+            "A) Kod incelemesi",
+            "B) Röportajlar (Interviews)",
+            "C) Donanım testi",
+            "D) Veri tabanı optimizasyonu",
+            "E) Sistem bakımı",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinimleri ortaya çıkarma yöntemleri arasında 'Röportajlar' (Interviews) yer alır.",
+        },
+        {
+          question: "İyi bir röportaj için ne önerilir?",
+          options: [
+            "A) Daha önce söylenen istekleri unutmamak",
+            "B) Uygulama alanına aşina olmak",
+            "C) Teknik terimler kullanmaktan kaçınmak",
+            "D) Görüşme raporunu paylaşmamak",
+            "E) Rastgele sorular sormak",
+          ],
+          correct: 1,
+          explanation:
+            "İyi bir röportaj için uygulama alanına aşina olmak önerilir.",
+        },
+        {
+          question: "Senaryolar neden faydalıdır?",
+          options: [
+            "A) Donanımı test eder",
+            "B) Ürünün davranışını gösterebilir",
+            "C) Kod yazımını hızlandırır",
+            "D) Veri tabanını optimize eder",
+            "E) Kullanıcı arayüzünü tasarlar",
+          ],
+          correct: 1,
+          explanation:
+            "Senaryolar, ürünün davranışını gösterebildiği ve kullanıcılar tarafından anlaşılabildiği için faydalıdır.",
+        },
+        {
+          question: "Gereksinimlerin tanımlanması hangi özelliği taşır?",
+          options: [
+            "A) Teknik bir dilde yazılır",
+            "B) Doğal bir dilde ve anlaşılabilir olmalıdır",
+            "C) Yalnızca geliştiriciler için hazırlanır",
+            "D) Matematiksel formüller içerir",
+            "E) Donanım gereksinimlerini listeler",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinimlerin tanımlanması, doğal bir dilde yazılır ve müşteri, kullanıcılar ve tedarikçiler tarafından anlaşılabilir olmalıdır.",
+        },
+        {
+          question: "Fonksiyonel gereksinimler neyi ifade eder?",
+          options: [
+            "A) Yazılımın güvenilirliğini",
+            "B) Hedef yazılımın işlevselliğini",
+            "C) Sistem donanımını",
+            "D) Kullanıcı arayüzünü",
+            "E) Bakım süreçlerini",
+          ],
+          correct: 1,
+          explanation:
+            "Fonksiyonel gereksinimler, hedef yazılımın işlevselliğini ifade eder.",
+        },
+        {
+          question: "Fonksiyonel olmayan gereksinimler hangi örneği içerir?",
+          options: [
+            "A) Sistemin bir dosyayı kaydetmesi",
+            "B) Sistemin güvenilirliği",
+            "C) Kullanıcı giriş ekranı tasarımı",
+            "D) Veri tabanı sorgusu",
+            "E) Kod optimizasyonu",
+          ],
+          correct: 1,
+          explanation:
+            "Fonksiyonel olmayan gereksinimler, güvenilirlik gibi yazılımın özelliklerini kapsar.",
+        },
+        {
+          question: "Gereksinim dokümanı hangi kuralı karşılamalıdır?",
+          options: [
+            "A) Yalnızca iç davranışı belirtir",
+            "B) Değiştirilmesi kolay olmalıdır",
+            "C) Teknik terimler içermemelidir",
+            "D) Donanım gereksinimlerini listeler",
+            "E) Matematiksel analiz gerektirir",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim dokümanı, Heninger’in 1980 kurallarına göre değiştirilmesi kolay olmalıdır.",
+        },
+        {
+          question: "Gereksinim şartnamesi kimler arasında bir sözleşmedir?",
+          options: [
+            "A) Kullanıcılar ve donanım tedarikçileri",
+            "B) Sistem tedarikçisi ve yazılım geliştirici",
+            "C) Geliştiriciler ve test ekibi",
+            "D) Müşteriler ve bakım ekibi",
+            "E) Kullanıcılar ve yöneticiler",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim şartnamesi, sistem tedarikçisi ile yazılım geliştirici arasındaki bir sözleşmedir.",
+        },
+        {
+          question: "Gereksinim şartnamesinde hangi bölüm yer alır?",
+          options: [
+            "A) Donanım tasarımı",
+            "B) Bilgi açıklaması",
+            "C) Kod örnekleri",
+            "D) Kullanıcı arayüzü taslağı",
+            "E) Test sonuçları",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim şartnamesi, bilgi içeriği, akışı ve yapısını içeren 'Bilgi açıklaması' bölümünü içerir.",
+        },
+        {
+          question: "Resmi şartname kullanmanın bir avantajı nedir?",
+          options: [
+            "A) Hatalı talepleri azaltır",
+            "B) Daha az teknik bilgi gerektirir",
+            "C) Kullanıcılar tarafından kolayca yazılır",
+            "D) Donanım gereksinimlerini tanımlar",
+            "E) Kod yazımını hızlandırır",
+          ],
+          correct: 0,
+          explanation:
+            "Resmi şartname, hatalı talepleri azaltma avantajına sahiptir.",
+        },
+        {
+          question: "Modelleme hangi yeteneğe sahiptir?",
+          options: [
+            "A) Donanımı test etme",
+            "B) Bilginin dönüşümünü ve sistem davranışını temsil etme",
+            "C) Kod yazma",
+            "D) Kullanıcı arayüzü tasarlama",
+            "E) Veri tabanı oluşturma",
+          ],
+          correct: 1,
+          explanation:
+            "Modelleme, bilginin dönüşümünü, fonksiyonları ve sistem davranışını temsil etme yeteneğine sahiptir.",
+        },
+        {
+          question: "Şartname notasyonu neden özel bir notasyon gerektirir?",
+          options: [
+            "A) Doğal dil aşırı esnektir",
+            "B) Kod yazımını kolaylaştırır",
+            "C) Donanım gereksinimlerini tanımlar",
+            "D) Kullanıcı arayüzünü düzenler",
+            "E) Veri tabanı yapısını oluşturur",
+          ],
+          correct: 0,
+          explanation:
+            "Doğal dilin aşırı esnek olması nedeniyle şartname notasyonu özel bir notasyon gerektirir.",
+        },
+        {
+          question: "Fonksiyonel olmayan gereksinimlere bir örnek nedir?",
+          options: [
+            "A) Sistemin bir dosyayı kaydetmesi",
+            "B) Sistemin kullanımı kolay olması",
+            "C) Kullanıcı giriş ekranı tasarımı",
+            "D) Veri tabanı sorgusu",
+            "E) Kod optimizasyonu",
+          ],
+          correct: 1,
+          explanation:
+            "Fonksiyonel olmayan gereksinimler, sistemin kullanımı kolay olması gibi özellikleri içerir.",
+        },
+        {
+          question: "Gereksinimlerin doğrulanmasında hangi adım yer alır?",
+          options: [
+            "A) Kod yazımı",
+            "B) Gereksinimlerin eksiksiz olduğunun gösterilmesi",
+            "C) Donanım testi",
+            "D) Kullanıcı arayüzü tasarımı",
+            "E) Veri tabanı optimizasyonu",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinimlerin doğrulanması, gereksinimlerin eksiksiz olduğunu gösterme adımını içerir.",
+        },
+        {
+          question: "Yapısal sistem analizinde ilk adım nedir?",
+          options: [
+            "A) Donanım gereksinimlerini belirlemek",
+            "B) Veri akış şemasını çizmek",
+            "C) Kod yazmak",
+            "D) Kullanıcı arayüzünü tasarlamak",
+            "E) Veri tabanını optimize etmek",
+          ],
+          correct: 1,
+          explanation:
+            "Yapısal sistem analizinde ilk adım 'Veri Akış Şemasını Çizmek'tir.",
+        },
+        {
+          question:
+            "Gereksinimleri ortaya çıkarmada anlamlı sorular sormak neden önemlidir?",
+          options: [
+            "A) Donanımı test eder",
+            "B) Müşterinin ihtiyaçlarını keşfetmeye yardımcı olur",
+            "C) Kod yazımını hızlandırır",
+            "D) Veri tabanını optimize eder",
+            "E) Kullanıcı arayüzünü tasarlar",
+          ],
+          correct: 1,
+          explanation:
+            "Anlamlı sorular sormak, müşterinin ihtiyaçlarını keşfetmek için önemlidir.",
+        },
+        {
+          question: "Çalışma prensiplerinden biri nedir?",
+          options: [
+            "A) Donanım gereksinimlerini tanımlamak",
+            "B) Yazılımın işlevlerini tanımlamak",
+            "C) Kod yazımını tamamlamak",
+            "D) Kullanıcı arayüzünü tasarlamak",
+            "E) Veri tabanını oluşturmak",
+          ],
+          correct: 1,
+          explanation:
+            "Çalışma prensipleri, yazılımın gerçekleştireceği işlevlerin tanımlanmasını içerir.",
+        },
+        {
+          question: "Gereksinim şartnamesinde hangi kriter yer alır?",
+          options: [
+            "A) Kod örnekleri",
+            "B) Doğrulama kriterleri",
+            "C) Donanım tasarımı",
+            "D) Kullanıcı arayüzü taslağı",
+            "E) Test sonuçları",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinim şartnamesi, başarılı uygulama için doğrulama kriterlerini içerir.",
+        },
+        {
+          question: "Senaryolar nasıl tasvir edilebilir?",
+          options: [
+            "A) Donanım bileşenlerini listeleyerek",
+            "B) Eylemleri listeleyerek veya olayların sırasını çizerek",
+            "C) Kod yazarak",
+            "D) Veri tabanı tasarlayarak",
+            "E) Kullanıcı arayüzü oluşturarak",
+          ],
+          correct: 1,
+          explanation:
+            "Senaryolar, eylemleri listeleyerek veya olayların sırasını çizerek tasvir edilebilir.",
+        },
+        {
+          question: "Bazı problemlerden biri nedir?",
+          options: [
+            "A) Kullanıcılar arasındaki çakışan istekler",
+            "B) Hızlı geliştirme",
+            "C) Düşük maliyet",
+            "D) Yüksek kullanıcı memnuniyeti",
+            "E) Eksiksiz gereksinimler",
+          ],
+          correct: 0,
+          explanation:
+            "Bazı problemler arasında kullanıcılar arasındaki çakışan istekler yer alır.",
+        },
+        {
+          question:
+            "Gereksinimlerin tanımlanması kimler tarafından anlaşılabilir olmalıdır?",
+          options: [
+            "A) Yalnızca geliştiriciler",
+            "B) Müşteri, kullanıcılar ve tedarikçiler",
+            "C) Yalnızca müşteriler",
+            "D) Donanım mühendisleri",
+            "E) Test ekibi",
+          ],
+          correct: 1,
+          explanation:
+            "Gereksinimlerin tanımlanması, müşteri, kullanıcılar ve tedarikçiler tarafından anlaşılabilir olmalıdır.",
+        },
+        {
+          question: "Resmi şartname hangi örneği içerir?",
+          options: [
+            "A) Donanım gereksinimleri",
+            "B) Önkoşullu ve sonkoşullu fonksiyonlar",
+            "C) Kullanıcı arayüzü tasarımları",
+            "D) Veri tabanı yapıları",
+            "E) Test senaryoları",
+          ],
+          correct: 1,
+          explanation:
+            "Resmi şartname, önkoşullu ve sonkoşullu fonksiyonlar gibi örnekleri içerir.",
+        },
+        {
+          question: "Modelleme türlerinden biri hangisidir?",
+          options: [
+            "A) Donanım modelleri",
+            "B) Veri modelleri",
+            "C) Kod modelleri",
+            "D) Kullanıcı arayüzü modelleri",
+            "E) Test modelleri",
+          ],
+          correct: 1,
+          explanation: "Modelleme türleri arasında 'Veri modelleri' yer alır.",
+        },
+        {
+          question: "Şartname dokümanı hangi kısıtlamayı içerebilir?",
+          options: [
+            "A) Kod yazım süresi",
+            "B) Son tarih",
+            "C) Donanım maliyeti",
+            "D) Kullanıcı arayüzü rengi",
+            "E) Veri tabanı boyutu",
+          ],
+          correct: 1,
+          explanation:
+            "Şartname dokümanı, son tarih gibi kısıtlamaları içerebilir.",
+        },
+        {
+          question: "Gereksinimleri ortaya çıkarmada hangi yöntem kullanılmaz?",
+          options: [
+            "A) Röportajlar",
+            "B) Senaryolar",
+            "C) Kullanıcı anketleri",
+            "D) Kod yazımı",
+            "E) Video kameralar",
+          ],
+          correct: 3,
+          explanation:
+            "Gereksinimleri ortaya çıkarmada kod yazımı bir yöntem olarak kullanılmaz.",
+        },
+        {
+          question: "Yapısal sistem analizinde hangi adım sonlarda yer alır?",
+          options: [
+            "A) Veri akış şemasını çizmek",
+            "B) Donanım gereksinimlerini belirlemek",
+            "C) Bilgisayarlaştırılacak bölümlere karar vermek",
+            "D) Veri akışlarının detaylarını belirlemek",
+            "E) Süreçlerin mantığını tanımlamak",
+          ],
+          correct: 1,
+          explanation:
+            "Yapısal sistem analizinde 'Donanım gereksinimlerinin belirlenmesi' son adımlardan biridir.",
+        },
+        {
+          question: "Yazılım mühendisliğinde tasarım nedir?",
+          options: [
+            "A) Kod yazma sürecidir",
+            "B) Mantıksal modelin fiziksel modele dönüştürülmesi çalışmasıdır",
+            "C) Donanım bileşenlerinin seçilmesi işlemidir",
+            "D) Kullanıcı arayüzünün test edilmesi sürecidir",
+            "E) Veri tabanının optimize edilmesi çalışmasıdır",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım, sistem analizi sonucunda üretilen mantıksal modelin fiziksel modele dönüştürülmesi çalışmasıdır.",
+        },
+        {
+          question: "Fiziksel model hangi unsuru içerir?",
+          options: [
+            "A) Kullanıcı gereksinimlerini",
+            "B) Yazılımın hangi parçalardan oluşacağını",
+            "C) Donanım test sonuçlarını",
+            "D) Kod optimizasyon yöntemlerini",
+            "E) Veri tabanı şifreleme tekniklerini",
+          ],
+          correct: 1,
+          explanation:
+            "Fiziksel model, yazılımın hangi parçalardan oluşacağını ve bu parçalar arasındaki ilişkileri içerir.",
+        },
+        {
+          question: "Tasarımın önemi hangi faktörü doğrudan etkiler?",
+          options: [
+            "A) Donanım maliyetini",
+            "B) Sistemin kararlılığını",
+            "C) Veri tabanı boyutunu",
+            "D) Kullanıcı sayısını",
+            "E) Kod uzunluğunu",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım, sistemin kararlılığı gibi projeyi doğrudan etkileyen faktörleri belirler.",
+        },
+        {
+          question: "Tasarım kavramlarından 'soyutlama' neyi sağlar?",
+          options: [
+            "A) Detayları gizleyerek yukarıdan bakabilme imkanı",
+            "B) Modüllerin iç yapısını tanımlar",
+            "C) Veri tabanı tasarımını kolaylaştırır",
+            "D) Kullanıcı arayüzünü optimize eder",
+            "E) Kod yazımını hızlandırır",
+          ],
+          correct: 0,
+          explanation:
+            "Soyutlama, detayları gizleyerek tasarıma yukarıdan bakabilme imkanı sağlar.",
+        },
+        {
+          question: "Modülerlik neyi ifade eder?",
+          options: [
+            "A) Sistemi tek bir modüle toplama",
+            "B) Sistemi istenen kalite faktörleri ışığında parçalara ayırma",
+            "C) Donanım bileşenlerini birleştirme",
+            "D) Kullanıcı arayüzünü tasarlama",
+            "E) Veri tabanını optimize etme",
+          ],
+          correct: 1,
+          explanation:
+            "Modülerlik, sistemi istenen kalite faktörleri ışığında parçalara ayırma sonucudur.",
+        },
+        {
+          question:
+            "Tasarım aşamalarından 'senaryo tabanlı elemanlar' hangi diyagramı içerir?",
+          options: [
+            "A) Sınıf diyagramı",
+            "B) Kullanım-durumu diyagramı",
+            "C) Veri akış diyagramı",
+            "D) Durum diyagramı",
+            "E) İşbirliği diyagramı",
+          ],
+          correct: 1,
+          explanation:
+            "Senaryo tabanlı elemanlar, kullanım-durumu diyagramını içerir.",
+        },
+        {
+          question: "İşlevsel bağımsızlık ne anlama gelir?",
+          options: [
+            "A) Modüllerin birbirine bağlı olması",
+            "B) Modüllerin parametre ile veri alıp sadece sonuç döndürmesi",
+            "C) Modüllerin iç yapısının gizlenmesi",
+            "D) Donanım ile yazılımın entegrasyonu",
+            "E) Kullanıcı arayüzünün tasarlanması",
+          ],
+          correct: 1,
+          explanation:
+            "İşlevsel bağımsızlık, modüllerin parametre ile veri alıp sadece sonuç döndürmesi anlamına gelir.",
+        },
+        {
+          question: "Veri tasarımı neden ilk yapılması gereken tasarımdır?",
+          options: [
+            "A) Kullanıcı arayüzünü kolaylaştırır",
+            "B) Bilgi saklama ve soyutlama için önemlidir",
+            "C) Kod yazımını hızlandırır",
+            "D) Donanım gereksinimlerini belirler",
+            "E) Sistem testlerini optimize eder",
+          ],
+          correct: 1,
+          explanation:
+            "Veri tasarımı, bilgi saklama ve soyutlama açısından önemli olduğu için ilk yapılır.",
+        },
+        {
+          question: "Veri tasarımında çözümleme hangi unsura yöneliktir?",
+          options: [
+            "A) Veriye erişim yöntemine",
+            "B) Kullanıcı arayüzüne",
+            "C) Donanım performansına",
+            "D) Kod optimizasyonuna",
+            "E) Sistem güvenliğine",
+          ],
+          correct: 0,
+          explanation:
+            "Veri tasarımında çözümleme, veriye erişim yöntemi gibi unsurlara yöneliktir.",
+        },
+        {
+          question: "Mimari tasarımda alt-sistem nedir?",
+          options: [
+            "A) Bağımsız çalışabilen bir sistem",
+            "B) Kullanıcı arayüzü bileşeni",
+            "C) Veri tabanı yapısı",
+            "D) Kod optimizasyon aracı",
+            "E) Donanım bileşeni",
+          ],
+          correct: 0,
+          explanation:
+            "Alt-sistem, diğer alt-sistemlere bağlı olmadan kendi başına çalışabilen bir sistemdir.",
+        },
+        {
+          question: "Modül ile alt-sistem arasındaki fark nedir?",
+          options: [
+            "A) Modül bağımsız bir sistemdir, alt-sistem değildir",
+            "B) Modül diğer modüllere hizmet sağlar, alt-sistem bağımsızdır",
+            "C) Modül veri tabanı tasarlar, alt-sistem kod yazar",
+            "D) Modül donanımı kontrol eder, alt-sistem veriyi işler",
+            "E) Modül kullanıcı arayüzüdür, alt-sistem değildir",
+          ],
+          correct: 1,
+          explanation:
+            "Modül, diğer modüllere hizmet sağlar ancak bağımsız bir sistem değildir; alt-sistem ise bağımsız çalışabilir.",
+        },
+        {
+          question: "Yordamsal tasarım neyi tanımlar?",
+          options: [
+            "A) Kullanıcı arayüzünü",
+            "B) Modüllerin iç yapılarındaki algoritmik ayrıntıları",
+            "C) Donanım gereksinimlerini",
+            "D) Veri tabanı yapısını",
+            "E) Sistem testlerini",
+          ],
+          correct: 1,
+          explanation:
+            "Yordamsal tasarım, modüllerin iç yapılarındaki algoritmik ayrıntıları tanımlar.",
+        },
+        {
+          question: "Program Tasarım Dili (PDL) nedir?",
+          options: [
+            "A) Gerçek bir programlama dili",
+            "B) Sözde kod (pseudo code) olarak bilinen bir gösterim",
+            "C) Donanım tasarım dili",
+            "D) Veri tabanı sorgu dili",
+            "E) Kullanıcı arayüzü tasarım aracı",
+          ],
+          correct: 1,
+          explanation:
+            "Program Tasarım Dili, sözde kod olarak bilinen ve programlama diline benzeyen bir gösterimdir.",
+        },
+        {
+          question:
+            "Yordamsal tasarımda grafiksel gösterimlerden biri hangisidir?",
+          options: [
+            "A) Kod listesi",
+            "B) Veri akış diyagramı",
+            "C) Donanım şeması",
+            "D) Kullanıcı arayüzü taslağı",
+            "E) Test raporu",
+          ],
+          correct: 1,
+          explanation:
+            "Yordamsal tasarımda grafiksel gösterimlerden biri veri akış diyagramıdır.",
+        },
+        {
+          question: "Kullanıcı arayüzü tasarımında hangi ilke önemlidir?",
+          options: [
+            "A) Kullanım kolaylığı ve öğrenim zamanı",
+            "B) Donanım performansı",
+            "C) Kod optimizasyonu",
+            "D) Veri tabanı güvenliği",
+            "E) Sistem testi",
+          ],
+          correct: 0,
+          explanation:
+            "Kullanıcı arayüzü tasarımında kullanım kolaylığı ve öğrenim zamanı esastır.",
+        },
+        {
+          question: "Kullanıcı arayüzünde hangi işlem geri alınabilmelidir?",
+          options: [
+            "A) Veri tabanı yedekleme",
+            "B) Önemli silmeler",
+            "C) Donanım testi",
+            "D) Kod derleme",
+            "E) Sistem güncellemesi",
+          ],
+          correct: 1,
+          explanation:
+            "Kullanıcı arayüzünde önemli silmelerin geri alınabilmesi gerektiği belirtilmiştir.",
+        },
+        {
+          question: "Bilgi gösteriminde ne önerilir?",
+          options: [
+            "A) Veri çokluğu ile kullanıcıyı bunaltmak",
+            "B) Grafik ve resimler kullanmak",
+            "C) Tutarsız başlık ve renkler kullanmak",
+            "D) Hata mesajlarını gizlemek",
+            "E) Tüm veriyi listelemek",
+          ],
+          correct: 1,
+          explanation:
+            "Bilgi gösteriminde veri çokluğu ile kullanıcıyı bunaltmamak için grafik ve resimler kullanılması önerilir.",
+        },
+        {
+          question: "Kullanıcı arayüzü prototipinde ne amaçlanır?",
+          options: [
+            "A) Donanım gereksinimlerini belirlemek",
+            "B) Kullanıcıdan onay almak",
+            "C) Kod yazımını tamamlamak",
+            "D) Veri tabanını optimize etmek",
+            "E) Sistem testlerini yapmak",
+          ],
+          correct: 1,
+          explanation:
+            "Kullanıcı arayüzü prototipi, kullanıcıya gösterilerek onay alınması için hazırlanır.",
+        },
+        {
+          question: "Tasarım kalite ölçütlerinden 'bağlaşım' ne ile ilgilidir?",
+          options: [
+            "A) Modüllerin iç yapısı",
+            "B) Modüller arası ilişki",
+            "C) Veri tabanı tasarımı",
+            "D) Kullanıcı arayüzü",
+            "E) Kod performansı",
+          ],
+          correct: 1,
+          explanation:
+            "Bağlaşım, tasarımı oluşturan modüller arası ilişki ile ilgilidir.",
+        },
+        {
+          question: "Yapışıklık (cohesion) neyi ifade eder?",
+          options: [
+            "A) Modüller arası bağlılığı",
+            "B) Modüllerin iç yapısını",
+            "C) Donanım performansını",
+            "D) Kullanıcı arayüzü tasarımını",
+            "E) Veri tabanı yapısını",
+          ],
+          correct: 1,
+          explanation: "Yapışıklık, modüllerin iç yapısı ile ilgilidir.",
+        },
+        {
+          question: "Yüksek kaliteli bir tasarımda bağlaşım nasıl olmalıdır?",
+          options: [
+            "A) Yüksek olmalıdır",
+            "B) Düşük olmalıdır",
+            "C) Orta seviyede olmalıdır",
+            "D) Sabit olmalıdır",
+            "E) Değişken olmalıdır",
+          ],
+          correct: 1,
+          explanation:
+            "Yüksek kaliteli bir tasarımda bağlaşım ölçümü az olmalıdır.",
+        },
+        {
+          question: "Yalın veri bağlaşımı neyi tanımlar?",
+          options: [
+            "A) Modüller arası karmaşık veri paylaşımını",
+            "B) Modüllerin tamsayı gibi yalın verilerle iletişimini",
+            "C) Modüllerin iç yapısını",
+            "D) Donanım ile yazılım entegrasyonunu",
+            "E) Kullanıcı arayüzü iletişimini",
+          ],
+          correct: 1,
+          explanation:
+            "Yalın veri bağlaşımı, modüllerin tamsayı, karakter gibi yalın verilerle iletişim kurmasını tanımlar.",
+        },
+        {
+          question: "Karmaşık veri bağlaşımı hangi durumda oluşur?",
+          options: [
+            "A) Modüller yalın verilerle iletişim kurduğunda",
+            "B) Modüller karmaşık veri yapılarıyla iletişim kurduğunda",
+            "C) Modüller donanım ile iletişim kurduğunda",
+            "D) Modüller kullanıcı arayüzü ile iletişim kurduğunda",
+            "E) Modüller veri tabanı ile iletişim kurduğunda",
+          ],
+          correct: 1,
+          explanation:
+            "Karmaşık veri bağlaşımı, modüllerin kayıt, dizi gibi karmaşık veri yapılarıyla iletişim kurması durumudur.",
+        },
+        {
+          question: "Denetim bağlaşımı nedir?",
+          options: [
+            "A) Modüllerin ortak veri alanına erişimi",
+            "B) Modüllerin denetim verisi ile iletişimi",
+            "C) Modüllerin iç yapısının tasarımı",
+            "D) Modüllerin kullanıcı arayüzü ile bağlantısı",
+            "E) Modüllerin donanım ile entegrasyonu",
+          ],
+          correct: 1,
+          explanation:
+            "Denetim bağlaşımı, modüller arasında denetim verisi kullanılarak iletişim kurulmasıdır.",
+        },
+        {
+          question: "Ortak veri bağlaşımı neden istenmez?",
+          options: [
+            "A) Modülleri bağımsız hale getirir",
+            "B) Ortak veri alanını izlemek zordur",
+            "C) Kod yazımını hızlandırır",
+            "D) Kullanıcı arayüzünü kolaylaştırır",
+            "E) Veri tabanını optimize eder",
+          ],
+          correct: 1,
+          explanation:
+            "Ortak veri bağlaşımı, ortak veri alanını izlemenin zor olması nedeniyle fazla istenmez.",
+        },
+        {
+          question: "İçerik bağlaşımı nasıl oluşur?",
+          options: [
+            "A) Modüllerin yalın verilerle iletişim kurmasıyla",
+            "B) Bir modülün başka bir modülün veri alanına erişmesiyle",
+            "C) Modüllerin donanım ile entegrasyonuyla",
+            "D) Modüllerin kullanıcı arayüzü ile bağlantısıyla",
+            "E) Modüllerin veri tabanı ile iletişim kurmasıyla",
+          ],
+          correct: 1,
+          explanation:
+            "İçerik bağlaşımı, bir modülün başka bir modülün veri alanına erişebilmesiyle oluşur.",
+        },
+        {
+          question: "Yapışıklık ile bağlaşım arasındaki ilişki nedir?",
+          options: [
+            "A) Doğru orantılıdır",
+            "B) Ters orantılıdır",
+            "C) Bağımsızdır",
+            "D) Eşittir",
+            "E) Sabittir",
+          ],
+          correct: 1,
+          explanation:
+            "Yapışıklık ile bağlaşım ters orantılıdır; yapışıklık yüksek olduğunda bağlaşım düşük olur.",
+        },
+        {
+          question: "İşlevsel yapışıklık neyi tanımlar?",
+          options: [
+            "A) Modülün tek bir iş problemine çözüm sunması",
+            "B) Modülün birden fazla işlemi bir arada yapması",
+            "C) Modülün donanım ile iletişim kurması",
+            "D) Modülün kullanıcı arayüzünü tasarlaması",
+            "E) Modülün veri tabanını optimize etmesi",
+          ],
+          correct: 0,
+          explanation:
+            "İşlevsel yapışıklık, modülün tek bir iş problemine çözüm sunmasıdır.",
+        },
+        {
+          question: "Sırasal yapışıklık hangi durumda oluşur?",
+          options: [
+            "A) İşlemlerin sırası önemli olmadığında",
+            "B) Bir işlemin çıktısı diğerinin girdisi olduğunda",
+            "C) İşlemler aynı veriyi kullandığında",
+            "D) İşlemler donanım ile iletişim kurduğunda",
+            "E) İşlemler kullanıcı arayüzü ile bağlantılı olduğunda",
+          ],
+          correct: 1,
+          explanation:
+            "Sırasal yapışıklık, bir işlemin çıktısının diğer bir işlemin girdisi olması durumunda oluşur.",
+        },
+        {
+          question: "İletişimsel yapışıklık neyi ifade eder?",
+          options: [
+            "A) İşlemlerin aynı girdi veya çıktıyı kullanması",
+            "B) İşlemlerin sırasının önemli olması",
+            "C) İşlemlerin belirli bir zamanda uygulanması",
+            "D) İşlemlerin donanım ile iletişim kurması",
+            "E) İşlemlerin kullanıcı arayüzü ile bağlantısı",
+          ],
+          correct: 0,
+          explanation:
+            "İletişimsel yapışıklık, modül içindeki işlemlerin aynı girdi veya çıktıyı kullanmasıdır.",
+        },
+        {
+          question: "Yordamsal yapışıklıkta ne önemlidir?",
+          options: [
+            "A) İşlemlerin veri ilişkisi",
+            "B) İşlemlerin sırası",
+            "C) İşlemlerin aynı veriyi kullanması",
+            "D) İşlemlerin donanım ile bağlantısı",
+            "E) İşlemlerin kullanıcı arayüzü ile ilişkisi",
+          ],
+          correct: 1,
+          explanation:
+            "Yordamsal yapışıklıkta işlemler arasında veri ilişkisi yoktur, ancak işlem sırası önemlidir.",
+        },
+        {
+          question: "Zamansal yapışıklık hangi durumda oluşur?",
+          options: [
+            "A) İşlemlerin sırası önemli olduğunda",
+            "B) İşlemlerin belirli bir zamanda uygulanması gerektiğinde",
+            "C) İşlemlerin aynı veriyi kullandığında",
+            "D) İşlemlerin donanım ile iletişim kurduğunda",
+            "E) İşlemlerin kullanıcı arayüzü ile bağlantılı olduğunda",
+          ],
+          correct: 1,
+          explanation:
+            "Zamansal yapışıklık, işlemlerin belirli bir zamanda uygulanması gerektiğinde ve sırası önemli olmadığında oluşur.",
+        },
+        {
+          question: "Mantıksal yapışıklık neyi tanımlar?",
+          options: [
+            "A) İşlemlerin rastgele bir araya gelmesi",
+            "B) Aynı türdeki işlemlerin bir araya toplanması",
+            "C) İşlemlerin sırasının önemli olması",
+            "D) İşlemlerin donanım ile iletişim kurması",
+            "E) İşlemlerin kullanıcı arayüzü ile bağlantısı",
+          ],
+          correct: 1,
+          explanation:
+            "Mantıksal yapışıklık, mantıksal olarak aynı türdeki işlemlerin bir araya toplanmasıdır.",
+        },
+        {
+          question: "Gelişigüzel yapışıklık neyi ifade eder?",
+          options: [
+            "A) İşlemler arasında ilişki bulunması",
+            "B) İşlemler arasında herhangi bir ilişki bulunmaması",
+            "C) İşlemlerin sırasının önemli olması",
+            "D) İşlemlerin donanım ile iletişim kurması",
+            "E) İşlemlerin kullanıcı arayüzü ile bağlantısı",
+          ],
+          correct: 1,
+          explanation:
+            "Gelişigüzel yapışıklık, işlemler arasında herhangi bir ilişkinin bulunmaması durumudur.",
+        },
+        {
+          question: "Tasarım dokümantasyonunda hangi unsur yer alır?",
+          options: [
+            "A) Kod örnekleri",
+            "B) Veri tasarımı",
+            "C) Donanım test sonuçları",
+            "D) Kullanıcı geri bildirimleri",
+            "E) Sistem güncelleme planı",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım dokümantasyonu, veri tasarımı gibi unsurları içerir.",
+        },
+        {
+          question: "Tasarım şartnamesi neyi kapsar?",
+          options: [
+            "A) Donanım gereksinimlerini",
+            "B) Tasarım kısıtlamalarını",
+            "C) Kod optimizasyon yöntemlerini",
+            "D) Kullanıcı arayüzü testlerini",
+            "E) Veri tabanı şifreleme tekniklerini",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım şartnamesi, tasarım kısıtlamaları gibi unsurları kapsar.",
+        },
+        {
+          question:
+            "Tasarım dokümantasyonunda program arayüzleri hangi türü içerir?",
+          options: [
+            "A) Yalnızca dahili arayüzler",
+            "B) Dış (insan-makine) ve dahili arayüzler",
+            "C) Yalnızca donanım arayüzleri",
+            "D) Yalnızca veri tabanı arayüzleri",
+            "E) Yalnızca kullanıcı arayüzleri",
+          ],
+          correct: 1,
+          explanation:
+            "Tasarım dokümantasyonunda program arayüzleri, dış (insan-makine) ve dahili arayüzleri içerir.",
+        },
+      ];
+      let currentModel = questionsModel1;
+      let currentQuestion = 0;
+      let score = 0;
+      let answered = Array(50).fill(false);
+      let userAnswers = Array(50).fill(null);
+      let wrongQuestions = [];
+      let isRetrying = false;
+
+      const questionArea = document.getElementById("questionArea");
+      const explanationDiv = document.getElementById("explanation");
+      const scoreDiv = document.getElementById("score");
+      const tableBody = document.getElementById("tableBody");
+      const modelSelect = document.getElementById("modelSelect");
+      const submitBtn = document.getElementById("submitBtn");
+      const overlay = document.getElementById("overlay");
+      const popup = document.getElementById("popup");
+      const popupScore = document.getElementById("popupScore");
+      const retryWrongBtn = document.getElementById("retryWrongBtn");
+      const closePopupBtn = document.getElementById("closePopupBtn");
+
+      function displayQuestion() {
+        const q = currentModel[currentQuestion];
+        questionArea.innerHTML = `
+          <p class="text-lg text-gray-800">${currentQuestion + 1}. ${
+          q.question
+        }</p>
+          <ul class="space-y-2 mt-2">
+            ${q.options
+              .map(
+                (opt, i) => `
+              <li><label class="flex items-center"><input type="radio" name="answer" value="${i}" ${
+                  answered[currentQuestion] ? "disabled" : ""
+                } class="mr-2"> ${opt}</label></li>
+            `
+              )
+              .join("")}
+          </ul>
+        `;
+        explanationDiv.classList.add("hidden");
+        submitBtn.textContent = answered[currentQuestion]
+          ? "Next"
+          : "Submit Answer";
+        if (
+          answered[currentQuestion] &&
+          userAnswers[currentQuestion] !== null
+        ) {
+          showExplanation();
+        }
+      }
+
+      function updateScore() {
+        scoreDiv.textContent = `Score: ${score}/${currentModel.length}`;
+      }
+
+      function updateTable() {
+        tableBody.innerHTML = currentModel
+          .map((_, i) => {
+            const status = answered[i]
+              ? userAnswers[i] === currentModel[i].correct
+                ? "Correct"
+                : "Incorrect"
+              : "Not Answered";
+            const className = answered[i]
+              ? userAnswers[i] === currentModel[i].correct
+                ? "correct"
+                : "incorrect"
+              : "";
+            return `
+            <tr class="${i % 2 === 0 ? "bg-gray-50" : "bg-white"}">
+              <td class="border p-2">${i + 1}</td>
+              <td class="border p-2 ${className}">${status}</td>
+            </tr>`;
+          })
+          .join("");
+      }
+
+      function showExplanation() {
+        const q = currentModel[currentQuestion];
+        const userAnswer = userAnswers[currentQuestion];
+        explanationDiv.classList.remove("hidden");
+        if (userAnswer === q.correct) {
+          explanationDiv.innerHTML = `<p class="correct">Correct! ${q.explanation}</p>`;
+        } else {
+          explanationDiv.innerHTML = `<p class="incorrect">Wrong! Correct answer: ${
+            q.options[q.correct]
+          }. ${q.explanation}</p>`;
+        }
+      }
+
+      function submitAnswer() {
+        if (answered[currentQuestion]) {
+          goToNextQuestion();
+          return;
+        }
+        const selected = document.querySelector('input[name="answer"]:checked');
+        if (!selected) {
+          alert("Please select an answer!");
+          return;
+        }
+        const answer = parseInt(selected.value);
+        userAnswers[currentQuestion] = answer;
+        answered[currentQuestion] = true;
+        if (answer === currentModel[currentQuestion].correct) {
+          score++;
+        } else {
+          wrongQuestions.push(currentQuestion);
+        }
+        showExplanation();
+        updateScore();
+        updateTable();
+        document
+          .querySelectorAll('input[name="answer"]')
+          .forEach((input) => (input.disabled = true));
+        submitBtn.textContent = "Next";
+      }
+
+      function goToNextQuestion() {
+        currentQuestion++;
+        if (currentQuestion >= currentModel.length) {
+          showScorePopup();
+        } else {
+          displayQuestion();
+        }
+      }
+
+      function showScorePopup() {
+        overlay.style.display = "block";
+        popup.style.display = "block";
+        popupScore.textContent = `Your score: ${score}/${currentModel.length}`;
+        retryWrongBtn.style.display =
+          wrongQuestions.length > 0 ? "inline-block" : "none";
+      }
+
+      function resetQuiz() {
+        currentQuestion = 0;
+        score = 0;
+        answered.fill(false);
+        userAnswers.fill(null);
+        wrongQuestions = [];
+        isRetrying = false;
+
+        if (modelSelect.value === "model1") currentModel = questionsModel1;
+
+        displayQuestion();
+        updateScore();
+        updateTable();
+        overlay.style.display = "none";
+        popup.style.display = "none";
+      }
+
+      function randomizeQuestions() {
+        for (let i = currentModel.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [currentModel[i], currentModel[j]] = [
+            currentModel[j],
+            currentModel[i],
+          ];
+        }
+        resetQuiz();
+      }
+
+      function switchModel() {
+        resetQuiz();
+      }
+
+      function retryWrongQuestions() {
+        if (wrongQuestions.length === 0) return;
+        const wrongIndices = [...wrongQuestions];
+        currentModel = wrongIndices.map((i) => currentModel[i]);
+        currentQuestion = 0;
+        score = 0;
+        answered = Array(currentModel.length).fill(false);
+        userAnswers = Array(currentModel.length).fill(null);
+        wrongQuestions = [];
+        isRetrying = true;
+        displayQuestion();
+        updateScore();
+        updateTable();
+        overlay.style.display = "none";
+        popup.style.display = "none";
+      }
+
+      submitBtn.addEventListener("click", submitAnswer);
+      document.getElementById("resetBtn").addEventListener("click", resetQuiz);
+      document
+        .getElementById("randomBtn")
+        .addEventListener("click", randomizeQuestions);
+      modelSelect.addEventListener("change", switchModel);
+      retryWrongBtn.addEventListener("click", retryWrongQuestions);
+      closePopupBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+        popup.style.display = "none";
+      });
+
+      displayQuestion();
+      updateScore();
+      updateTable();
+    </script>
+  </body>
+</html>
