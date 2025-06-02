@@ -1641,7 +1641,7 @@
           ],
           correct: 4,
           explanation:
-            "Prototip Testi, bir yazılım test seviyesi değildir; diğer seçenekler (Birim, Entegrasyon, Sistem ve Kullanıcı Kabul Testleri) yazılım geliştirme sürecinde standart test seviyeleridir.",
+            "Prototip Testi, standart bir yazılım test seviyesi değildir; diğer seçenekler yazılım geliştirme sürecinde standart test seviyeleridir.",
         },
         {
           question:
@@ -1650,39 +1650,26 @@
             "Bakım sırasında karşılaşabilecek sorunları bilmek o sorunlara önlem almayı kolaylaştırır.",
             "Belgelendirme ve kod içindeki açıklamalar ne kadar iyiyse bakım o kadar kolaylaşır.",
             "Yazılım sürüm sayısını artırmak bakımı zorlaştırır.",
-            "Yazılım geliştirildiği süreci aynen takip etmek zaman ve iş gücünden tasarruf sağlar.",
             "Yazılım işlevsel modüllere bölmek sonradan yapılacak değişiklikleri kolaylaştırır.",
+            "Yazılımın bakımı, geliştirme sürecine bağlı olarak daha karmaşık olabilir.",
           ],
-          correct: 3,
+          correct: 2,
           explanation:
-            "Yazılım geliştirildiği süreci aynen takip etmek genellikle bakımda tasarruf sağlamaz, çünkü zamanla değişen gereksinimler ve teknolojiler eski süreci geçersiz kılabilir.",
+            "Yazılım sürüm sayısını artırmak, bakım zorluğunu doğrudan etkilemez; bakım zorluğu genellikle kod karmaşıklığı, belgelendirme eksikliği veya teknik borç gibi faktörlere bağlıdır.",
         },
         {
           question:
             "Aşağıdaki ifadelerden hangisi, Yazılım Geliştirme Yaşam Döngüsü'nün 'Spiral Model' ile ilgili doğru bir açıklama yapmaktadır?",
           options: [
-            "Spiral Model, yalnızca yazılımın kodlama ve test aşamalarını içerir ve diğer aşamaları dışlar.",
-            "Spiral Model, her aşamada müşteri geri bildirimlerini dikkate almaz ve tamamen iç geliştirme süreçlerine odaklanır.",
-            "Spiral Model, yazılım geliştirme sürecinde risk analizi ve yönetimini önemli bir odak noktası olarak belirler.",
-            "Spiral Model, yazılım geliştirme sürecini bir dizi kısa, sabit süreli iterasyonlara böler ve her iterasyon sonunda çalışma yazılımı teslim eder.",
-            "Spiral Model, Çağlayan modeli gibi katı aşamaların sırasını takip eder ve geri dönüşlere izin vermez.",
+            "Spiral Model, yalnızca yazılımın kodlama ve test aşamalarını içerir.",
+            "Spiral Model, müşteri geri bildirimlerini dikkate almaz.",
+            "Spiral Model, risk analizi ve yönetimini önemli bir odak noktası olarak belirler.",
+            "Spiral Model, sabit süreli iterasyonlarla çalışma yazılımı teslim eder.",
+            "Spiral Model, Çağlayan modeli gibi katı aşamaların sırasını takip eder.",
           ],
           correct: 2,
           explanation:
             "Spiral Model, risk analizi ve yönetimine odaklanır, bu da onu diğer modellerden ayıran temel özelliktir.",
-        },
-        {
-          question: "Hangi modelde Risk Analizi Olgusu ön plana çıkmıştır?",
-          options: [
-            "Helezonoik model",
-            "Çağlayan model",
-            "V model",
-            "Evrimsel geliştirme süreç modeli",
-            "Gelişigüzel model",
-          ],
-          correct: 0,
-          explanation:
-            "Helezonoik model (Spiral Model), risk analizini merkeze alır ve bu özelliğiyle öne çıkar.",
         },
         {
           question:
@@ -1724,11 +1711,11 @@
           ],
           correct: 2,
           explanation:
-            "Beta testleri, genellikle geliştiricinin ortamında değil, gerçek kullanıcıların ortamında yapılır.",
+            "Beta testleri, genellikle gerçek kullanıcıların ortamında yapılır, geliştiricinin ortamında değil.",
         },
         {
           question:
-            "Aşağıdaki yazılım geliştirme sonuçlarından hangisi (diğerlerine göre daha çok) performans ve güvenlik gibi kavramlar göz önüne alınarak gerçekleştirilir?",
+            "Aşağıdaki yazılım geliştirme sonuçlarından hangisi performans ve güvenlik gibi kavramlar göz önüne alınarak gerçekleştirilir?",
           options: [
             "Analiz",
             "Tasarım",
@@ -1744,11 +1731,11 @@
           question:
             "Aşağıdakilerden hangisi çevik (agile) manifestonun prensipleri arasında yer almaz?",
           options: [
-            "Bilgin  takımlar içerisinde ya da takımlar arasında en iyi paylaşılması ve anlaşılmasının yolu yüz yüze iletişimdir.",
+            "Bilginin takımlar arasında en iyi paylaşılma yolu yüz yüze iletişimdir.",
             "Basitlik önemlidir.",
-            "En iyi mimari, gereksinimler ve tasarımlar sadece yönetim tarafından organize edilebilen takımlardan çıkar.",
+            "En iyi mimari, yalnızca yönetim tarafından organize edilen takımlardan çıkar.",
             "İlerlemenin en iyi göstergesi çalışan yazılımdır.",
-            "Geliştiriciler ve iş insanları proje boyunca beraber çalışmalıdırlar.",
+            "Geliştiriciler ve iş insanları proje boyunca beraber çalışmalıdır.",
           ],
           correct: 2,
           explanation:
@@ -1770,20 +1757,6 @@
         },
         {
           question:
-            "Aşağıdaki yazılım geliştirme sonuçlarından hangisinde (en fazla) performans ve güvenlik gibi kavramlar göz önüne alınarak gerçekleştirilmektedir?",
-          options: [
-            "Analiz",
-            "Tasarım",
-            "Unit testler",
-            "Bakım",
-            "Production ortam",
-          ],
-          correct: 1,
-          explanation:
-            "Tasarım aşamasında performans ve güvenlik gibi kritik unsurlar sistemin temel yapısına dahil edilir.",
-        },
-        {
-          question:
             "Hangi test seviyesi, genellikle geliştirme sürecinin erken aşamalarında, yazılım modüllerinin bireysel olarak doğruluğunu kontrol etmek için kullanılır?",
           options: [
             "Sistem Testi",
@@ -1799,7 +1772,7 @@
         {
           question: "Hangisi çağlayan modelinin avantajlarından değildir?",
           options: [
-            "Erken işin miktarını arttırır.",
+            "Erken işin miktarını artırır.",
             "Proje yöneticileri için işin dağılımını yapma açısından kolaydır.",
             "Aşamaları iyi anlaşılabilir.",
             "Gereksinimleri iyi anlaşılabilen projelerde iyi çalışır.",
@@ -1817,7 +1790,7 @@
             "Hataları en aza indirmek",
             "Müşteri memnuniyetini artırmak",
             "Sürekli entegrasyonu teşvik etmek",
-            "Gereksinimleri daha अच्छी तरह समझना",
+            "Gereksinimleri daha iyi anlamak",
           ],
           correct: 1,
           explanation:
@@ -1888,23 +1861,9 @@
             "Nesne-Sınıf Şemaları",
             "Algoritma",
           ],
-          correct: 3,
+          correct: 2,
           explanation:
-            "Nesne-Sınıf Şemaları, süreç akışını değil, sistemin yapısını tanımlamak için kullanılır; diğerleri süreç akışı belirtim yöntemleridir.",
-        },
-        {
-          question:
-            "Aşağıdakilerden hangisi yazılım süreci modellerinden olan barok modeli özellikleri arasında sayılmaz?",
-          options: [
-            "Yaşam döngüsü temel adımlarının doğrusal bir şekilde geliştirildiği modeldir.",
-            "Belgelemeyi işin doğal bir ürünü olarak görmektedir.",
-            "Gerçekleştirim aşamasına daha fazla önem verilmiş bir modeldir.",
-            "Aşamalar arası geri dönüşlerin nasıl yapılacağı belli değildir.",
-            "Çağlayan modele göre geri dönüşler kötü tanımlanmıştır.",
-          ],
-          correct: 1,
-          explanation:
-            "Barok model, belgelemeyi doğal bir ürün olarak görmez; bu, daha çok çevik yaklaşımlara özgü bir özelliktir.",
+            "Karar Ağaçları, süreç akışını tanımlamak için kullanılan bir belirtim yöntemidir; Nesne-Sınıf Şemaları ise sistemin yapısını tanımlamak için kullanılır.",
         },
         {
           question: "Hangisi üç programlama özelliği değildir?",
@@ -2035,19 +1994,6 @@
             "Çevik Manifesto’nun temel önceliği, müşteriye erken ve sürekli değer sunmaktır.",
         },
         {
-          question: "Spiral modelinin temel amacı nedir?",
-          options: [
-            "Tekrarlayan geliştirme ile riskleri azaltmak.",
-            "Projeyi hızlı bir şekilde tamamlamak.",
-            "Müşteri geri bildirimlerine dayalı geliştirme.",
-            "Ayrıntılı dokümantasyon oluşturmak.",
-            "Proje maliyetlerini minimize etmek.",
-          ],
-          correct: 0,
-          explanation:
-            "Spiral model, riskleri azaltmak için tekrarlayan bir yaklaşım benimser.",
-        },
-        {
           question:
             "Extreme Programming yönteminde çiftler halinde çalışan yazılımcılar hangi faaliyeti birlikte gerçekleştirir?",
           options: [
@@ -2133,17 +2079,17 @@
         },
         {
           question:
-            "Aşağıdakilerden hangisi yazılım süreç modeli olan helezonik modelin avantajlarından biri değildir?",
+            "Aşağıdakilerden hangisi Helezonik Model'in avantajlarından biri değildir?",
           options: [
-            "Pek çok yazılım modelini içinde bulundurur.",
-            "Geliştirmeyi küçük parçalara böler. En riskli kısımlar önce gerçekleştirilir.",
-            "Her döngü bir fazı ifade eder. Doğrudan tanımlama, tasarım,... vs gibi bir faz yoktur.",
-            "Küçük ve düşük riskli projeler için ucuz bir yöntemdir.",
-            "Geliştirmeyi küçük parçalara böler. En riskli kısımlar önce gerçekleştirilir.",
+            "Risk analizi olgusu ön plandadır.",
+            "Prototip yaklaşımı vardır.",
+            "Ara adımların fazlalığı nedeniyle dokümantasyon gerektirir.",
+            "Kullanıcılar sistemi erken görebilir.",
+            "Hataları erken gidermeye odaklanır.",
           ],
-          correct: 3,
+          correct: 2,
           explanation:
-            "Helezonik model, karmaşık ve riskli projeler için uygundur; küçük ve düşük riskli projelerde genellikle maliyet etkin değildir.",
+            "Dokümantasyon gerekliliği, Helezonik Model’in bir dezavantajıdır, avantajı değildir.",
         },
         {
           question:
@@ -2185,61 +2131,6 @@
           correct: 1,
           explanation:
             "Ekip katılımı ve iletişim, çevik metodolojinin bir avantajıdır, dezavantajı değildir.",
-        },
-        {
-          question:
-            "Aşağıdakilerden hangisi extreme programmingde pair working etkinliğini arttırır?",
-          options: [
-            "Ekip üyelerinin sürekli farklı partnerlerle çalışmasını sağlamak.",
-            "Bir partnerin diğerine göre daha çok çalışması.",
-            "Partnerlerin birbirleriyle çok sık çatışması.",
-            "Bir partnerin diğerine göre daha çok karar alması.",
-            "Birbirleriyle anlaşamayan ekip üyelerini eşleştirmek.",
-          ],
-          correct: 0,
-          explanation:
-            "Farklı partnerlerle çalışma, bilgi paylaşımını ve etkinliği artırır.",
-        },
-        {
-          question:
-            "Aşağıdakilerden hangisi Helezonik Model'in Avantajlarından biri değildir?",
-          options: [
-            "Risk analizi olgusu ön plandadır.",
-            "Prototip yaklaşımı vardır.",
-            "Ara adımların fazlalığı nedeniyle dokümantasyon gerektirir.",
-            "Kullanıcılar sistemi erken görebilir.",
-            "Hataları erken gidermeye odaklanır.",
-          ],
-          correct: 2,
-          explanation:
-            "Dokümantasyon gerekliliği, Helezonik Model’in bir dezavantajıdır, avantajı değildir.",
-        },
-        {
-          question: "Aşağıdakilerden hangisi bakım türlerinden değildir?",
-          options: [
-            "Düzeltici (Corrective)",
-            "Uyarlayıcı (InlineAdaptive)",
-            "Geliştirici (Enhancive)",
-            "İyileştirici (Perfective)",
-            "Önleyici (Preventive)",
-          ],
-          correct: 2,
-          explanation:
-            "Geliştirici (Enhancive), standart bir bakım türü değildir.",
-        },
-        {
-          question:
-            "Aşağıdakilerden hangisi Helezonik Model'in Avantajlarından biri değildir?",
-          options: [
-            "Risk analizi olgusu ön plandadır.",
-            "Prototip yaklaşımı vardır.",
-            "Ara adımların fazlalığı nedeniyle dokümantasyon gerektirir.",
-            "Kullanıcılar sistemi erken görebilir.",
-            "Hataları erken gidermeye odaklanır.",
-          ],
-          correct: 2,
-          explanation:
-            "Dokümantasyon gerekliliği, Helezonik Model’in bir dezavantajıdır, avantajı değildir.",
         },
         {
           question: "Aşağıdakilerden hangisi bir yazılım bakım türü değildir?",
@@ -2312,20 +2203,6 @@
         },
         {
           question:
-            "Aşağıda verilen Kara kutu testi ile ilgili maddelerden hangisi yanlıştır?",
-          options: [
-            "Yazılımın ara yüzü düzeyinde yapılır.",
-            "Kullanıcı, bu testler sırasında yazılımın iç yapısıyla ilgilenir.",
-            "Amaç yazılımın işlevlerini yerine getirdiğini göstermektir.",
-            "Testler hata bulmak için yapılır.",
-            "Testlerin düzey, kullanım alanına göre değişiklik gösterebilir.",
-          ],
-          correct: 1,
-          explanation:
-            "Kara kutu testinde kullanıcı, iç yapıyla ilgilenmez; sadece giriş-çıkışlar test edilir.",
-        },
-        {
-          question:
             "Aşağıdakilerden hangisi metodolojilerde helezonik modeli ön plana çıkaran özelliklerden sayılmaz?",
           options: [
             "Prototip yaklaşımı",
@@ -2339,6 +2216,7 @@
             "Evrimsel yaklaşım, helezonik modelin değil, evrimsel geliştirme modelinin özelliğidir.",
         },
       ];
+
       let currentModel = questionsModel7; // Default to model7
       let currentQuestion = 0;
       let score = 0;
